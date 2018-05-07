@@ -51,7 +51,7 @@
                 android:padding="@dimen/activity_vertical_margin"
                 android:background="@drawable/bg_transparant_white">
 
-                <com.motor.service.servicemotor.utils.TypefacedTextView
+                <com.wirajaya.adventure.admin.utils.TypefacedTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:typeface="Roboto-Regular.ttf"
@@ -121,7 +121,7 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-                <com.motor.service.servicemotor.utils.TypefacedTextView
+                <com.wirajaya.adventure.admin.utils.TypefacedTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:typeface="Roboto-Regular.ttf"
@@ -201,7 +201,7 @@
                         android:id="@+id/input_kodepos"/>
                 </android.support.design.widget.TextInputLayout>
 
-                <com.motor.service.servicemotor.utils.TypefacedTextView
+                <com.wirajaya.adventure.admin.utils.TypefacedTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:typeface="Roboto-Regular.ttf"
@@ -245,7 +245,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="10dp">
 
-                <com.motor.service.servicemotor.utils.TypefacedTextView
+                <com.wirajaya.adventure.admin.utils.TypefacedTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lokasi Rumah Anda berdasarkan Peta"

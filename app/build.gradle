@@ -20,16 +20,16 @@ apply plugin: 'me.tatarka.retrolambda'
 android {
     signingConfigs {
         config {
-            keyAlias 'servicemotor'
-            keyPassword '4nimexok'
+            keyAlias 'wirajayaadmin'
+            keyPassword 'wirajaya234'
             storeFile file('/home/androidev/ikhun/servicemotor.jks')
-            storePassword '4nimexok'
+            storePassword 'wirajaya234'
         }
     }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.motor.service.servicemotor"
+        applicationId "com.wirajaya.adventure.admin"
         minSdkVersion 19
         targetSdkVersion 23
         multiDexEnabled true

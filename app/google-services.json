@@ -1,59 +1,35 @@
 {
   "project_info": {
-    "project_number": "14840893557",
-    "firebase_url": "https://servicemotor-23e95.firebaseio.com",
-    "project_id": "servicemotor-23e95",
-    "storage_bucket": "servicemotor-23e95.appspot.com"
+    "project_number": "341743298642",
+    "firebase_url": "https://wirajayaadventure-c3bba.firebaseio.com",
+    "project_id": "wirajayaadventure-c3bba",
+    "storage_bucket": "wirajayaadventure-c3bba.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14840893557:android:76b5f7b4f6994147",
+        "mobilesdk_app_id": "1:341743298642:android:5da05b3c6f7b15cc",
         "android_client_info": {
-          "package_name": "com.motor.service.servicemotor"
+          "package_name": "com.adventure.wirajaya.wirajayaadventure_admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "14840893557-jqr65llbf62ni054jhhneul5s32gev55.apps.googleusercontent.com",
+          "client_id": "341743298642-jbqgq79c51cgacfuimqi29b7jetktptc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.motor.service.servicemotor",
-            "certificate_hash": "21db47d9e768d87da9f8a8faa9318576a4196403"
-          }
-        },
-        {
-          "client_id": "14840893557-qkevgdpofkjp3jqgaea9o8i88udu2oc3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.motor.service.servicemotor",
-            "certificate_hash": "ca9fc75bd68dbd116e9ed761bb21c7431d664cee"
-          }
-        },
-        {
-          "client_id": "14840893557-ethh2baen9qknh15p2c7cklic063d1np.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.motor.service.servicemotor",
+            "package_name": "com.adventure.wirajaya.wirajayaadventure_admin",
             "certificate_hash": "bb79d4008f1c926330d1bc1cfe9f09b6dcca68aa"
           }
         },
         {
-          "client_id": "14840893557-ebhofcauj0u4kg2me7mk8ud46vkua2pa.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.motor.service.servicemotor",
-            "certificate_hash": "95cb0efa1b968154e719ed89351fad90fc6cc0a7"
-          }
-        },
-        {
-          "client_id": "14840893557-rtlfvhr3rdbbaahg2uo866970sk5k4sf.apps.googleusercontent.com",
+          "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCD-Nbz0nz8O0yDXa3wjkyqTxwTZbI2y28"
+          "current_key": "AIzaSyCGGzg_HjdHI01j_ALAN7ihgaHSu7h7UBE"
         }
       ],
       "services": {
@@ -64,7 +40,51 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "14840893557-rtlfvhr3rdbbaahg2uo866970sk5k4sf.apps.googleusercontent.com",
+              "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:341743298642:android:99f7d97c7e1410a2",
+        "android_client_info": {
+          "package_name": "com.wirajaya.adventure.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "341743298642-pmuaurucdrad86obc9m1lop107trvqs9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wirajaya.adventure.admin",
+            "certificate_hash": "bb79d4008f1c926330d1bc1cfe9f09b6dcca68aa"
+          }
+        },
+        {
+          "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGGzg_HjdHI01j_ALAN7ihgaHSu7h7UBE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

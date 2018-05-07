@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Service Motor</string>
+    <string name="app_name">Wirajaya Admin</string>
     <string name="masuk_dengan_google">Masuk Dengan Google</string>
     <string name="error_field_required">Harus di isi!!</string>
     <string name="ijin_camera">Membutuhkan ijin untuk akses kamera</string>
@@ -22,6 +22,6 @@
     </string-array>
 
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
-        AIzaSyCD-Nbz0nz8O0yDXa3wjkyqTxwTZbI2y28
+        AIzaSyBkVqShf4Q6ro2VLgOBhS3CZjPunyq9x-s
     </string>
 </resources>

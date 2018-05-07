@@ -8,7 +8,7 @@
     android:maxWidth="500dp"
     android:minHeight="10dp"
     android:minWidth="10dp"
-    tools:context="com.motor.service.servicemotor.MainActivity"
+    tools:context="com.wirajaya.adventure.admin.MainActivity"
     tools:layout_editor_absoluteY="25dp"
     android:background="@drawable/gradient_blackwhite">
 

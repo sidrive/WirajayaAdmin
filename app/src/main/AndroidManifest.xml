@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.motor.service.servicemotor">
+    package="com.wirajaya.adventure.admin">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -34,10 +34,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="servicemotor.com"
+                    android:host="wirajayaadventure.com"
                     android:scheme="http" />
                 <data
-                    android:host="servicemotor.com"
+                    android:host="wirajayaadventure.com"
                     android:scheme="https" />
             </intent-filter>
         </activity>
