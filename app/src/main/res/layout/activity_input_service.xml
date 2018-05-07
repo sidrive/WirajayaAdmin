@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/gradient_blackwhite">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:alpha=".90"
+            android:scaleType="centerCrop"
+            app:srcCompat="@color/colorSoft" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:alpha=".5"
+            android:src="@drawable/gradient_bg" />
+
+        <TextView
+            android:id="@+id/txtMotor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="107dp"
+            android:text="Honda AB 0000 G"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"
+            android:shadowColor="@color/colorWhite"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"/>
+
+    </RelativeLayout>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="175dp"
+        android:layout_marginBottom="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/bg_radius_transparant_white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_radius_white_selector"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Status Nota"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <RadioButton
+                        android:id="@+id/rdNotaLama"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nota Lama" />
+
+                    <RadioButton
+                        android:id="@+id/rdNotaBaru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nota Baru" />
+                </RadioGroup>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Service" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_jenis_service">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jenis Service"
+                        android:text="Pilih Jenis Service"
+                        android:focusable="false"
+                        android:editable="false"
+                        android:drawableRight="@drawable/arrow_down"
+                        android:id="@+id/input_jenis_service"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Keterangan Service" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_service">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jenis Service"
+                        android:text="Pilih Keterangan Service"
+                        android:focusable="false"
+                        android:editable="false"
+                        android:drawableRight="@drawable/arrow_down"
+                        android:id="@+id/input_ketservice"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnPart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Spare Part"
+                        android:layout_marginTop="8dp"/>
+
+                    <EditText
+                        android:id="@+id/txt_part"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint=""/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="5.5pt"
+                        android:text="Masukkan part yg diservice, mis:ban,lampu,kampas,dll"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="KM Motor" />
+
+                <EditText
+                    android:id="@+id/txt_kmservice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="KM Motor Saat Service"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Service"
+                    android:layout_marginTop="8dp"/>
+                <Button
+                    android:id="@+id/btn_tglservice"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Tanggal Service"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tambah Foto Nota"
+                    android:layout_marginTop="8dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@color/colorSoft"
+                        android:id="@+id/imgNota"/>
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/btnaddNota"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="5dp"
+                        android:clickable="true"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@android:drawable/ic_menu_camera" />
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/btn_simpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SIMPAN"
+            android:background="@drawable/bg_radius_red_selector"
+            android:layout_marginHorizontal="5dp"/>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

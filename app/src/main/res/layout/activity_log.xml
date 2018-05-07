@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_blackwhite">
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:src="@mipmap/ic_launcher_motorbike"
+            android:scaleType="fitCenter"
+            android:alpha="0.02"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@mipmap/ic_launcher_motorbike"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lupa Service Motor, Lupa Bayar Tagihan atau \n Lupa Bayar Pajak Motor? \n Kini bukan alasan lagi!!"
+                android:textStyle="italic"
+                android:textColor="@color/mdtp_white"
+                android:textAlignment="center"/>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Silahkan Login Dengan Akun Google Anda"
+        android:textAlignment="center"
+        android:textStyle="italic"
+        android:textColor="@color/mdtp_white"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="160dp"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textColor="@color/colorPrimaryDark"
+        android:drawableLeft="@drawable/ic_google_g_logo"
+        android:text="Masuk Dengan Google"
+        android:id="@+id/btn_login_with_google"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/button_radius_white_selector"/>
+
+    <include layout="@layout/view_progress"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

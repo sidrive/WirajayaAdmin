@@ -1,0 +1,65 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.2'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:3.1.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
+
+allprojects {
+    repositories {
+        maven {
+            url "https://jitpack.io"
+        }
+        maven {
+
+            url "https://maven.google.com"
+        }
+        maven {
+
+            url 'https://maven.fabric.io/public'
+        }
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    final FIREBASE_VERSION = '11.0.4'
+    final MAP_UTILS_VERSION = '0.5+'
+    final DAGGER_VERSION = '2.2'
+
+    fbcore = "com.google.firebase:firebase-core:${FIREBASE_VERSION}"
+    fbauth = "com.google.firebase:firebase-auth:${FIREBASE_VERSION}"
+    fbdb = "com.google.firebase:firebase-database:${FIREBASE_VERSION}"
+    fbstorage = "com.google.firebase:firebase-storage:${FIREBASE_VERSION}"
+    fbmsg = "com.google.firebase:firebase-messaging:${FIREBASE_VERSION}"
+    fbcrash = "com.google.firebase:firebase-crash:${FIREBASE_VERSION}"
+    fbconfig = "com.google.firebase:firebase-config:${FIREBASE_VERSION}"
+    fbinvites = "com.google.firebase:firebase-invites:${FIREBASE_VERSION}"
+
+    gplus = "com.google.android.gms:play-services-plus:${FIREBASE_VERSION}"
+    gauth = "com.google.android.gms:play-services-auth:${FIREBASE_VERSION}"
+    gaware = "com.google.android.gms:play-services-awareness:${FIREBASE_VERSION}"
+    glocation = "com.google.android.gms:play-services-location:${FIREBASE_VERSION}"
+    gmap = "com.google.android.gms:play-services-maps:${FIREBASE_VERSION}"
+    gcore = "com.google.android.gms:play-services:${FIREBASE_VERSION}"
+    gmapUtil = "com.google.maps.android:android-maps-utils:${MAP_UTILS_VERSION}"
+
+    daggerCompiler = "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+}

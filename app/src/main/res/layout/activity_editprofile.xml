@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_blackwhite">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/activity_vertical_margin"
+                android:orientation="vertical">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/img_avatar"
+                    android:src="@color/colorSoft"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/colorGold"
+                    app:civ_border_overlay="true"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:id="@+id/btn_upload_avatar"
+                    android:text="Ganti profil foto "
+                    android:textColor="@color/colorWhite"
+                    android:shadowColor="@color/colorDark"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="5"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/activity_vertical_margin"
+                android:background="@drawable/bg_transparant_white">
+
+                <com.motor.service.servicemotor.utils.TypefacedTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:typeface="Roboto-Regular.ttf"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:text="Data Diri"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="No. SIM"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/input_sim"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Lengkap"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/input_name"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lin_input_birthday"
+                    android:clickable="true">
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/layout_input_birthday">
+                        <android.support.design.widget.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tanggal Lahir"
+                            android:text="Masukan Tanggal Lahir"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:id="@+id/input_birthday"/>
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_input_gender">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jenis Kelamin"
+                        android:text="Pilih Jenis Kelamin"
+                        android:focusable="false"
+                        android:editable="false"
+                        android:drawableRight="@drawable/arrow_down"
+                        android:id="@+id/input_gender"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+                <com.motor.service.servicemotor.utils.TypefacedTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:typeface="Roboto-Regular.ttf"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:text="Alamat Lengkap"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_pilihpeta">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pilih Alamat Dari Peta"
+                        android:focusable="false"
+                        android:editable="false"
+                        android:drawableRight="@drawable/ic_navigate_next_black_24dp"
+                        android:id="@+id/input_peta"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat"
+                        android:id="@+id/input_alamat"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nama Jalan"
+                        android:id="@+id/input_jalan"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kota"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/input_kota"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Provinsi"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/input_provinsi"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Kode Pos"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:id="@+id/input_kodepos"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <com.motor.service.servicemotor.utils.TypefacedTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:typeface="Roboto-Regular.ttf"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:text="Kontak"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="16sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:id="@+id/input_email"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomer HP"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:id="@+id/input_phone"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp">
+
+                <com.motor.service.servicemotor.utils.TypefacedTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lokasi Rumah Anda berdasarkan Peta"
+                    app:typeface="Roboto-Light.ttf"
+                    android:textColor="@color/colorWhite"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorShadowWhite"
+                    android:id="@+id/imgMap"
+                    android:layout_marginBottom="5dp"/>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/toolbar_basic"/>
+
+    <include layout="@layout/view_progress"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/rel_map"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:background="@color/colorWhite">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".base.ui.add_location.AddLocationActivity"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_marker"
+            android:layout_centerInParent="true"
+            android:paddingBottom="32dp"
+            android:src="@drawable/ic_place_red"/>
+
+        <Button
+            android:id="@+id/btnSimpanMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="14dp"
+            android:layout_marginEnd="18dp"
+            android:text="Simpan Lokasi" />
+
+
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
