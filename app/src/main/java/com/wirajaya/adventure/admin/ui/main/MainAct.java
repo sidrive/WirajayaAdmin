@@ -6,7 +6,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.midi.MidiOutputPort;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +26,7 @@ import com.wirajaya.adventure.admin.base.BaseActivity;
 import com.wirajaya.adventure.admin.base.BaseApplication;
 import com.wirajaya.adventure.admin.data.adapter.AdapterProfileUser;
 import com.wirajaya.adventure.admin.data.adapter.AdapterStatusMotor;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
 import com.wirajaya.adventure.admin.ui.inputMotor.InputMotorActivity;
@@ -71,7 +70,7 @@ public class MainAct extends BaseActivity {
     User user;
 
     @Inject
-    Motor motor;
+    Barang barang;
 
     private AdapterStatusMotor adapterStatusMotor;
     private AdapterProfileUser adapterProfileUser;
@@ -169,9 +168,9 @@ public class MainAct extends BaseActivity {
     presenter.getMotor(user);
     }
 
-    public void initListMotor(List<Motor> listMotor){
-        adapterStatusMotor = new AdapterStatusMotor((ArrayList<Motor>) listMotor,this, this);
-//        adapterStatusMotor.UpdateMotor(listMotor);
+    public void initListMotor(List<Barang> listBarang){
+        adapterStatusMotor = new AdapterStatusMotor((ArrayList<Barang>) listBarang,this, this);
+//        adapterStatusMotor.UpdateMotor(listBarang);
         lsmotor.setAdapter(adapterStatusMotor);
     }
 
@@ -217,14 +216,14 @@ public class MainAct extends BaseActivity {
         }
     }
 
-    public void updateKM(Motor motor){
-        presenter.updateMotor(motor);
+    public void updateKM(Barang barang){
+        presenter.updateMotor(barang);
     }
 
     public void succesSaveMotor() {
         showLoading(false);
-        String title = "Motor disimpan";
-        String desc = "Kami sedang melakukan update data motor";
+        String title = "Barang disimpan";
+        String desc = "Kami sedang melakukan update data barang";
         int icon = R.drawable.ic_alarm_on;
         showAlertDialog(title, desc, icon);
     }
@@ -234,7 +233,7 @@ public class MainAct extends BaseActivity {
 
     private void showAlertDialog(String title, String desc, int icon) {
         final Intent intent = new Intent(this, MainAct.class);
-        intent.putExtra("motor", "motor");
+        intent.putExtra("barang", "barang");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         new AlertDialog.Builder(this)
                 .setTitle(title)

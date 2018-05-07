@@ -1,9 +1,8 @@
 package com.wirajaya.adventure.admin.data.remote.user;
 
 import com.wirajaya.adventure.admin.base.annotation.UserScope;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
-import com.wirajaya.adventure.admin.data.remote.MotorService;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 
 import dagger.Module;
@@ -37,8 +36,8 @@ public class UserModule {
 
    @Provides
     @UserScope
-   Motor provideMotor(){
-        return new Motor();
+   Barang provideMotor(){
+        return new Barang();
     }
 
 /*    @UserScope

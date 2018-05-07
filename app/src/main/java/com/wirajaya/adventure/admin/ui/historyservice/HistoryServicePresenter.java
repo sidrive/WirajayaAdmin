@@ -6,7 +6,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.wirajaya.adventure.admin.base.BasePresenter;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 import com.wirajaya.adventure.admin.data.remote.FirebaseImageService;
@@ -15,19 +15,17 @@ import com.wirajaya.adventure.admin.data.remote.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.facebook.GraphRequest.TAG;
-
 public class HistoryServicePresenter implements BasePresenter {
     HistoryServiceActivity activity;
     UserService userService;
     FirebaseImageService firebaseImageService;
-    Motor motor;
+    Barang barang;
     CategoryService categoryService;
 
-    public HistoryServicePresenter(HistoryServiceActivity activity, UserService userService, Motor motor, FirebaseImageService firebaseImageService) {
+    public HistoryServicePresenter(HistoryServiceActivity activity, UserService userService, Barang barang, FirebaseImageService firebaseImageService) {
         this.activity = activity;
         this.userService = userService;
-        this.motor = motor;
+        this.barang = barang;
         this.firebaseImageService = firebaseImageService;
         this.categoryService = categoryService;
     }
@@ -42,8 +40,8 @@ public class HistoryServicePresenter implements BasePresenter {
 
     }
 
-    public void getService(Motor motor){
-        userService.getService(motor.getIdmotor()).addValueEventListener(new ValueEventListener() {
+    public void getService(Barang barang){
+        userService.getService(barang.getIdmotor()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Service> listService = new ArrayList<Service>();

@@ -1,11 +1,9 @@
 package com.wirajaya.adventure.admin.ui.editmotor;
 
 import com.wirajaya.adventure.admin.base.annotation.ActivityScope;
-import com.wirajaya.adventure.admin.data.model.Motor;
-import com.wirajaya.adventure.admin.data.remote.CategoryService;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.FirebaseImageService;
 import com.wirajaya.adventure.admin.data.remote.UserService;
-import com.wirajaya.adventure.admin.data.remote.model.User;
 
 import dagger.Module;
 import dagger.Provides;
@@ -24,7 +22,7 @@ public class EditMotorActivityModule {
 
     @ActivityScope
     @Provides
-    EditMotorPresenter provideEditMotorPresenter(UserService userService, Motor motor, FirebaseImageService firebaseImageService){
-        return new EditMotorPresenter(activity,userService,motor,firebaseImageService);
+    EditMotorPresenter provideEditMotorPresenter(UserService userService, Barang barang, FirebaseImageService firebaseImageService){
+        return new EditMotorPresenter(activity,userService, barang,firebaseImageService);
     }
 }

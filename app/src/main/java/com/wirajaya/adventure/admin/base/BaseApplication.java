@@ -17,7 +17,7 @@ import com.wirajaya.adventure.admin.data.inputMotor.InputmotorComponent;
 import com.wirajaya.adventure.admin.data.inputMotor.InputmotorModule;
 import com.wirajaya.adventure.admin.data.main.MainComponent;
 import com.wirajaya.adventure.admin.data.main.MainModule;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.firebase.FirebaseModule;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.data.remote.motor.MotorComponent;
@@ -87,8 +87,8 @@ public class BaseApplication extends MultiDexApplication {
         return userComponent;
     }
 
-    public MotorComponent createMotorComponent(Motor motor) {
-        motorComponent = appComponent.plus(new MotorModule(motor));
+    public MotorComponent createMotorComponent(Barang barang) {
+        motorComponent = appComponent.plus(new MotorModule(barang));
         return motorComponent;
     }
 

@@ -1,7 +1,7 @@
 package com.wirajaya.adventure.admin.ui.inputMotor;
 
 import com.wirajaya.adventure.admin.base.annotation.ActivityScope;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 import com.wirajaya.adventure.admin.data.remote.FirebaseImageService;
 import com.wirajaya.adventure.admin.data.remote.UserService;
@@ -27,7 +27,7 @@ public class InputMotorModule {
 
     @ActivityScope
     @Provides
-    InputMotorPresenter provideInputMotorPresenter(UserService userService, User user, CategoryService categoryService, Motor motor, FirebaseImageService firebaseImageService){
-        return new InputMotorPresenter(activity,userService,user,categoryService,motor,firebaseImageService);
+    InputMotorPresenter provideInputMotorPresenter(UserService userService, User user, CategoryService categoryService, Barang barang, FirebaseImageService firebaseImageService){
+        return new InputMotorPresenter(activity,userService,user,categoryService, barang,firebaseImageService);
     }
 }

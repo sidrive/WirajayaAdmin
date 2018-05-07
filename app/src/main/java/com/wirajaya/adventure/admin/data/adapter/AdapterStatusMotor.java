@@ -4,8 +4,6 @@ import android.animation.ValueAnimator;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -21,10 +19,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.wirajaya.adventure.admin.R;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivity;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
 import com.wirajaya.adventure.admin.utils.DateFormater;
@@ -37,7 +34,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.facebook.GraphRequest.TAG;
 
@@ -48,10 +44,10 @@ import static com.facebook.GraphRequest.TAG;
 public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
     private Context mcontext;
-    private List<Motor> mitem;
+    private List<Barang> mitem;
     private MainAct activity;
 
-    public AdapterStatusMotor(ArrayList<Motor> item, Context context, MainAct activity){
+    public AdapterStatusMotor(ArrayList<Barang> item, Context context, MainAct activity){
         this.mcontext = context;
         this.mitem = item;
         this.activity = activity;
@@ -68,33 +64,33 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Motor motor = getItem(position);
-        Log.e(TAG, "onBindViewHolder: "+motor);
+        Barang barang = getItem(position);
+        Log.e(TAG, "onBindViewHolder: "+ barang);
 
         Long tglserv;
 
 
-        if(motor.getTgl_service() == null){
+        if(barang.getTgl_service() == null){
             tglserv = System.currentTimeMillis();
         }
         else {
-            tglserv = motor.getTgl_service();
+            tglserv = barang.getTgl_service();
         }
 
         String tglService = DateFormater.getDate(tglserv,"d MMMM y");
-        String tglPajak = DateFormater.getDate(motor.getTahun_pajak(),"d MMMM");
+        String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
 
-        Long sisaPajak = motor.getTahun_pajak() - System.currentTimeMillis();
+        Long sisaPajak = barang.getTahun_pajak() - System.currentTimeMillis();
         int diff = (int) Math.floor(sisaPajak/1000/60/60/24);
 
-        holder.txtplat.setText(motor.getSeri()+" "+motor.getPlat());
-        holder.txtmerk.setText(motor.getMerk());
+        holder.txtplat.setText(barang.getSeri()+" "+ barang.getPlat());
+        holder.txtmerk.setText(barang.getMerk());
         holder.txtTglPajak.setText(tglPajak);
         holder.txtServiceAkhir.setText(tglService);
         holder.txtSisaPajak.setText(String.valueOf(diff)+" hari sebelum jatuh tempo bayar pajak");
 
 
-        float from = motor.getKm_NextService()-motor.getKm_now();
+        float from = barang.getKm_NextService()- barang.getKm_now();
         float from1 = 2500-from;
         float hasil = (from1/2500)*100;
         Log.e(TAG, "onBindViewHolder: "+hasil);
@@ -106,7 +102,7 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
         holder.progresKilometer.setSecondaryProgress((int) hasil);
         holder.progresKilometer.startAnimation(anim);
-        holder.txtKmNow.setText(motor.getKm_now()+"/"+motor.getKm_NextService()+" KM");
+        holder.txtKmNow.setText(barang.getKm_now()+"/"+ barang.getKm_NextService()+" KM");
 
         holder.btnUpdateKm.setOnClickListener(new OnClickListener() {
 
@@ -125,7 +121,7 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
                 final EditText userInput = (EditText) promptsView
                         .findViewById(R.id.txtUpdatekm);
-                userInput.setText(String.valueOf(motor.getKm_now()));
+                userInput.setText(String.valueOf(barang.getKm_now()));
                 // set dialog message
                 alertDialogBuilder
                         .setCancelable(false)
@@ -133,9 +129,9 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog,int id) {
 
-                                    motor.setKm_now(Integer.valueOf(userInput.getText().toString()));
+                                    barang.setKm_now(Integer.valueOf(userInput.getText().toString()));
 
-                                        activity.updateKM(motor);
+                                        activity.updateKM(barang);
                                     }
                                 })
                         .setNegativeButton("Cancel",
@@ -200,9 +196,9 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
                                     public void onClick(DialogInterface dialog,int id) {
 
                                         myCalendar.add(Calendar.YEAR,1);
-                                        motor.setTahun_pajak(myCalendar.getTimeInMillis());
+                                        barang.setTahun_pajak(myCalendar.getTimeInMillis());
 
-                                        activity.updateKM(motor);
+                                        activity.updateKM(barang);
                                     }
                                 })
                         .setNegativeButton("Cancel",
@@ -266,22 +262,22 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-           Motor motor = getItem(this.getAdapterPosition());
-            Log.e(TAG, "onClick: "+motor );
-            EditMotorActivity.startWithMotor(activity,motor);
+           Barang barang = getItem(this.getAdapterPosition());
+            Log.e(TAG, "onClick: "+ barang);
+            EditMotorActivity.startWithMotor(activity, barang);
         }
     }
 
-    private Motor getData(int adptPosition){
+    private Barang getData(int adptPosition){
         return mitem.get(adptPosition);
     }
 
     @Nullable
-    public Motor getItem(int position) {
+    public Barang getItem(int position) {
         return mitem.get(position);
     }
 
-    public void UpdateMotor(List<Motor> listarray) {
+    public void UpdateMotor(List<Barang> listarray) {
         mitem = listarray;
 //        notifyDataSetChanged();
     }

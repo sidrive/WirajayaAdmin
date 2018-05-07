@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lupa Service Motor, Lupa Bayar Tagihan atau \n Lupa Bayar Pajak Motor? \n Kini bukan alasan lagi!!"
+            android:text="Wirajaya Adventure \n Rental Alat Camping &amp; OutDoor"
             android:textStyle="italic"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"

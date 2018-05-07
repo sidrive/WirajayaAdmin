@@ -129,8 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginRight="5dp"
-                android:text="Input Motor"
-                android:drawableEnd="@mipmap/ic_launcher_motorbike"
+                android:text="Input Barang"
+                android:drawableEnd="@mipmap/ic_launcher_tenda"
                 android:background="@drawable/bg_radius_white_selector"/>
 
             <Button
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Profile"
-                android:drawableEnd="@mipmap/ic_rider_profile"
+                android:drawableEnd="@mipmap/ic_launcher_user"
                 android:background="@drawable/bg_radius_white_selector"/>
         </LinearLayout>
 

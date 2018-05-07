@@ -7,7 +7,7 @@ import android.widget.Toast;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.wirajaya.adventure.admin.base.BasePresenter;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 import com.wirajaya.adventure.admin.data.remote.FirebaseImageService;
@@ -17,14 +17,14 @@ public class InputServicePresenter implements BasePresenter {
     InputServiceActivity activity;
     UserService userService;
     FirebaseImageService firebaseImageService;
-    Motor motor;
+    Barang barang;
     CategoryService categoryService;
     Service service;
 
-    public InputServicePresenter(InputServiceActivity activity,UserService userService,CategoryService categoryService, Motor motor, Service service, FirebaseImageService firebaseImageService){
+    public InputServicePresenter(InputServiceActivity activity, UserService userService, CategoryService categoryService, Barang barang, Service service, FirebaseImageService firebaseImageService){
         this.activity = activity;
         this.userService = userService;
-        this.motor = motor;
+        this.barang = barang;
         this.service = service;
         this.firebaseImageService = firebaseImageService;
         this.categoryService = categoryService;
@@ -40,9 +40,9 @@ public class InputServicePresenter implements BasePresenter {
 
     }
 
-    public void uploadAvatar(final Motor motor,final Service service, byte[] data, final Uri uri){
+    public void uploadAvatar(final Barang barang, final Service service, byte[] data, final Uri uri){
         activity.showLoading(true);
-        StorageReference avatarPartnerRef = firebaseImageService.getServiceImageRefOriginal(motor.getUserid(),motor.getIdmotor(),service.getIdservice());
+        StorageReference avatarPartnerRef = firebaseImageService.getServiceImageRefOriginal(barang.getUserid(), barang.getIdmotor(),service.getIdservice());
 
         UploadTask uploadTask = avatarPartnerRef.putFile(uri);
 // Register observers to listen for when the download is done or if it fails
@@ -53,16 +53,16 @@ public class InputServicePresenter implements BasePresenter {
         }).addOnSuccessListener(taskSnapshot -> {
             // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
             Uri downloadUrl = taskSnapshot.getDownloadUrl();
-            activity.successUploadImage(downloadUrl.toString(),motor);
+            activity.successUploadImage(downloadUrl.toString(), barang);
 
         });
     }
 
-    public void updateMotor(Motor motor,Service service){
-        Log.e("InputMotor","idmotor "+motor.getIdmotor());
-        categoryService.saveMotor(motor).addOnCompleteListener(task -> activity.succesSaveMotor(service)).addOnFailureListener(e -> {
+    public void updateMotor(Barang barang, Service service){
+        Log.e("InputMotor","idmotor "+ barang.getIdmotor());
+        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor(service)).addOnFailureListener(e -> {
             activity.showLoading(false);
-            Toast.makeText(activity, "Gagal menyimpan motor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });
     }
 

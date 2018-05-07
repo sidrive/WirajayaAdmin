@@ -27,15 +27,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
 import com.wirajaya.adventure.admin.base.BaseApplication;
 import com.wirajaya.adventure.admin.data.model.Category;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.dialog.DialogUploadOption;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
@@ -46,12 +42,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.sql.Date;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -138,7 +131,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     Button btnthnmtr;
 
     @Inject
-    Motor motor;
+    Barang barang;
 
     @Inject
     InputMotorPresenter presenter;
@@ -238,7 +231,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     private void showMerk(){
         final AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.MyAlertDialogStyle);
-        alert.setTitle("Pilih Merk Motor");
+        alert.setTitle("Pilih Merk Barang");
         alert.setSingleChoiceItems(merk, merkVal, (dialog, which) -> {
             handleSelectCategoryMerk(which);
             changeLogo();
@@ -270,7 +263,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     private void showType() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.MyAlertDialogStyle);
-        alert.setTitle("Pilih Type Motor");
+        alert.setTitle("Pilih Type Barang");
         alert.setSingleChoiceItems(type, typeVal, (dialog, which) -> {
             handleSelectSubCategoryType(which);
             dialog.dismiss();
@@ -410,12 +403,12 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         boolean cancel = false;
         View focusView = null;
 
-        if(TextUtils.isEmpty(txtmerk.getText().toString()) && txtmerk.getText().toString().equals("Merk Motor")){
+        if(TextUtils.isEmpty(txtmerk.getText().toString()) && txtmerk.getText().toString().equals("Merk Barang")){
             txtmerk.setError(strErrRequired);
             focusView = txtmerk;
             cancel = true;
         }
-        if(TextUtils.isEmpty(txttype.getText().toString()) && txttype.getText().toString().equals("Type Motor")){
+        if(TextUtils.isEmpty(txttype.getText().toString()) && txttype.getText().toString().equals("Type Barang")){
             txttype.setError(strErrRequired);
             focusView = txttype;
             cancel = true;
@@ -463,33 +456,33 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
             focusView.requestFocus();
         }else {
 
-            motor.setUserid(user.getUid());
-            motor.setIdmotor(String.valueOf(txtmerk.getText())+String.valueOf(txtplat.getText()).toUpperCase());
-            motor.setMerk(String.valueOf(txtmerk.getText()));
-            motor.setType(String.valueOf(txttype.getText()));
-            motor.setSeri(String.valueOf(txtseri.getText()));
-            motor.setPlat(String.valueOf(txtplat.getText()).toUpperCase());
-            motor.setTahun_buat(String.valueOf(btnthnmtr.getText()));
-            motor.setNo_rangka(String.valueOf(norangka.getText()));
+            barang.setUserid(user.getUid());
+            barang.setIdmotor(String.valueOf(txtmerk.getText())+String.valueOf(txtplat.getText()).toUpperCase());
+            barang.setMerk(String.valueOf(txtmerk.getText()));
+            barang.setType(String.valueOf(txttype.getText()));
+            barang.setSeri(String.valueOf(txtseri.getText()));
+            barang.setPlat(String.valueOf(txtplat.getText()).toUpperCase());
+            barang.setTahun_buat(String.valueOf(btnthnmtr.getText()));
+            barang.setNo_rangka(String.valueOf(norangka.getText()));
 
             Log.e(TAG, "validate before: "+myCalendar);
             myCalendar.add(Calendar.YEAR,1);
-            motor.setTahun_pajak(myCalendar.getTimeInMillis());
+            barang.setTahun_pajak(myCalendar.getTimeInMillis());
             Log.e(TAG, "validate after: "+myCalendar );
 
-            motor.setKm_now(Integer.valueOf(txtKmNow.getText().toString()));
+            barang.setKm_now(Integer.valueOf(txtKmNow.getText().toString()));
             if(chYes.isChecked()){
                 if(TextUtils.isEmpty(kmratakerja.getText().toString())){
-                    motor.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+0);
+                    barang.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+0);
                 } else {
-                    motor.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+Integer.valueOf(kmratakerja.getText().toString()));
+                    barang.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+Integer.valueOf(kmratakerja.getText().toString()));
                 }
             }
 
             if (imgOriginal != null) {
-                presenter.uploadAvatar(motor, imgSmall, imgOriginal);
+                presenter.uploadAvatar(barang, imgSmall, imgOriginal);
             } else {
-                presenter.savemotor(motor);
+                presenter.savemotor(barang);
             }
 
         }
@@ -498,8 +491,8 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     public void succesSaveMotor() {
         showLoading(false);
-        String title = "Motor disimpan";
-        String desc = "Kami sedang melakukan update data motor";
+        String title = "Barang disimpan";
+        String desc = "Kami sedang melakukan update data barang";
         int icon = R.drawable.ic_alarm_on;
         showAlertDialog(title, desc, icon);
     }
@@ -515,7 +508,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     private void showAlertDialog(String title, String desc, int icon) {
         final Intent intent = new Intent(this, MainAct.class);
-        intent.putExtra("motor", "motor");
+        intent.putExtra("barang", "barang");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         new AlertDialog.Builder(this)
                 .setTitle(title)
@@ -537,7 +530,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         final AlertDialog.Builder d = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.year_picker_dialog, null);
-        d.setTitle("Pilih Tahun Pembuatan Motor Sesuai BPKB");
+        d.setTitle("Pilih Tahun Pembuatan Barang Sesuai BPKB");
         d.setView(dialogView);
         final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
         int yearNow = myCalendar.get(Calendar.YEAR);
@@ -670,15 +663,15 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     public void successUploadImage(String url) {
         if (url != null) {
-            motor.setPhoto_url(url);
+            barang.setPhoto_url(url);
         }
-        presenter.savemotor(motor);
+        presenter.savemotor(barang);
     }
 
-    public void successUpdateMotor(Motor motor) {
+    public void successUpdateMotor(Barang barang) {
         showLoading(false);
         Toast.makeText(this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-        BaseApplication.get(this).createMotorComponent(motor);
+        BaseApplication.get(this).createMotorComponent(barang);
         finish();
 
     }

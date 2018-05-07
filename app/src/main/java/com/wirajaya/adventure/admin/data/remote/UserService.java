@@ -6,7 +6,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.EmailConfirmation;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 
@@ -49,8 +49,8 @@ public class UserService {
 
     }
 
-    public Task<Void> updateMotor(Motor motor) {
-        return databaseRef.child("motors").child(motor.getUserid()).child(motor.getIdmotor()).setValue(motor);
+    public Task<Void> updateMotor(Barang barang) {
+        return databaseRef.child("motors").child(barang.getUserid()).child(barang.getIdmotor()).setValue(barang);
     }
 
     //users

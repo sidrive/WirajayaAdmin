@@ -148,8 +148,8 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
     @Bind(R.id.input_kodepos)
     EditText inputKodepos;
 
-    @Bind(R.id.input_sim)
-    EditText inputSim;
+    @Bind(R.id.input_member)
+    EditText inputMember;
 
     @Bind(R.id.img_avatar)
     CircleImageView imgAvatar;
@@ -364,7 +364,7 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
             initGender(user.getGender());
         }
         if (user.getNomor_sim() != null) {
-            inputSim.setText(user.getNomor_sim());
+            inputMember.setText(user.getNomor_sim());
         }
         if (user.getPhone() != null) {
             inputPhone.setText(user.getPhone());
@@ -577,7 +577,7 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
         inputKota.setError(null);
         inputProvinsi.setError(null);
         inputKodepos.setError(null);
-        inputSim.setError(null);
+        inputMember.setError(null);
 
         String name = inputName.getText().toString();
         String email = inputEmail.getText().toString();
@@ -595,7 +595,7 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
         String kota = inputKota.getText().toString();
         String provinsi = inputProvinsi.getText().toString();
         String kodepos = inputKodepos.getText().toString();
-        String nosim = inputSim.getText().toString();
+        String nosim = inputMember.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
@@ -659,8 +659,8 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
             showLoading(false);
         }
         if (TextUtils.isEmpty(nosim)) {
-            inputSim.setError(strErrRequired);
-            focusView = inputSim;
+            inputMember.setError(strErrRequired);
+            focusView = inputMember;
             cancel = true;
             showLoading(false);
         }

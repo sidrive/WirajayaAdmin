@@ -3,7 +3,7 @@ package com.wirajaya.adventure.admin.data.remote;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 
 /**
@@ -28,8 +28,8 @@ public class CategoryService {
         return databaseRef.child("seri").child(id);
     }
 
-    public Task<Void> saveMotor(Motor motor){
-        return databaseRef.child("motors").child(motor.getUserid()).child(motor.getIdmotor()).setValue(motor);
+    public Task<Void> saveMotor(Barang barang){
+        return databaseRef.child("motors").child(barang.getUserid()).child(barang.getIdmotor()).setValue(barang);
     }
 
     public DatabaseReference getMotor(String id){

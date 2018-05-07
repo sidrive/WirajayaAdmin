@@ -1,7 +1,6 @@
 package com.wirajaya.adventure.admin.ui.historyservice;
 
 import android.app.Activity;
-import android.app.Presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,14 +14,13 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.core.ImagePipeline;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
 import com.wirajaya.adventure.admin.base.BaseApplication;
 import com.wirajaya.adventure.admin.data.adapter.AdapterService;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class HistoryServiceActivity extends BaseActivity {
     ImageView imgAvatar;
 
     @Inject
-    Motor motor;
+    Barang barang;
 
     @Inject
     HistoryServicePresenter presenter;
@@ -80,10 +78,10 @@ public class HistoryServiceActivity extends BaseActivity {
                 .inject(this);
     }
 
-    public static void startWithMotor(Activity activity, final Motor motor) {
+    public static void startWithMotor(Activity activity, final Barang barang) {
         Intent intent = new Intent(activity, HistoryServiceActivity.class);
 
-        BaseApplication.get(activity).createMotorComponent(motor);
+        BaseApplication.get(activity).createMotorComponent(barang);
         activity.startActivity(intent);
     }
 
@@ -97,7 +95,7 @@ public class HistoryServiceActivity extends BaseActivity {
     }
 
     public void initService(){
-        presenter.getService(motor);
+        presenter.getService(barang);
     }
 
     public void initListService(List<Service> listService){
@@ -108,10 +106,10 @@ public class HistoryServiceActivity extends BaseActivity {
     }
 
     public void initMotorPhoto(){
-        if (motor.getPhoto_url() != null) {
-            if (!motor.getPhoto_url().equalsIgnoreCase("NOT")){
+        if (barang.getPhoto_url() != null) {
+            if (!barang.getPhoto_url().equalsIgnoreCase("NOT")){
                 Glide.with(this)
-                        .load(motor.getPhoto_url()).listener(new RequestListener<String, GlideDrawable>() {
+                        .load(barang.getPhoto_url()).listener(new RequestListener<String, GlideDrawable>() {
                     @Override
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                         Log.e("IMAGE_EXCEPTION", "Exception " + e.toString());
@@ -129,7 +127,7 @@ public class HistoryServiceActivity extends BaseActivity {
                         .into(imgAvatar);*/
 
                 Glide.with(this)
-                        .load(motor.getPhoto_url())
+                        .load(barang.getPhoto_url())
                         .placeholder(R.color.colorSoft)
                         .dontAnimate()
                         .into(imgAvatar);

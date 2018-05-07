@@ -26,7 +26,7 @@ import com.bumptech.glide.Glide;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
 import com.wirajaya.adventure.admin.base.BaseApplication;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.ui.historyservice.HistoryServiceActivity;
 import com.wirajaya.adventure.admin.ui.dialog.DialogUploadOption;
 import com.wirajaya.adventure.admin.ui.dialog.DialogUploadOption.OnDialogUploadOptionClickListener;
@@ -116,7 +116,7 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     EditMotorPresenter presenter;
 
     @Inject
-    Motor motor;
+    Barang barang;
 
     byte[] imgSmall;
     Uri imgOriginal;
@@ -167,63 +167,63 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     }
 
 
-    public static void startWithMotor(Activity activity, final Motor motor) {
+    public static void startWithMotor(Activity activity, final Barang barang) {
         Intent intent = new Intent(activity, EditMotorActivity.class);
 
-        BaseApplication.get(activity).createMotorComponent(motor);
+        BaseApplication.get(activity).createMotorComponent(barang);
         activity.startActivity(intent);
     }
 
     public void initMotor(){
-        if(motor.getMerk() != null){
-            txtMerk.setText(motor.getMerk().toString());
+        if(barang.getMerk() != null){
+            txtMerk.setText(barang.getMerk().toString());
         }
-        if(motor.getType() != null){
-            txtType.setText(motor.getType().toString());
+        if(barang.getType() != null){
+            txtType.setText(barang.getType().toString());
         }
-        if(motor.getSeri() != null){
-            txtSeri.setText(motor.getSeri().toString());
+        if(barang.getSeri() != null){
+            txtSeri.setText(barang.getSeri().toString());
         }
-        if(motor.getPlat() != null){
-            txtPlat.setText(motor.getPlat().toString());
+        if(barang.getPlat() != null){
+            txtPlat.setText(barang.getPlat().toString());
         }
-        if(motor.getTahun_pajak() != null){
-            String tglPajak = DateFormater.getDate(motor.getTahun_pajak(),"d MMMM");
+        if(barang.getTahun_pajak() != null){
+            String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
             btnPajak.setText(tglPajak);
         }
-        if(motor.getTahun_buat() != null){
-            btnTahunmtr.setText(motor.getTahun_buat().toString());
+        if(barang.getTahun_buat() != null){
+            btnTahunmtr.setText(barang.getTahun_buat().toString());
         }
-        if(motor.getNo_rangka() != null){
-            txtNorangka.setText(motor.getNo_rangka().toString());
+        if(barang.getNo_rangka() != null){
+            txtNorangka.setText(barang.getNo_rangka().toString());
         }
-        if(String.valueOf(motor.getKm_now()) != null){
-            txtKmnow.setText(String.valueOf(motor.getKm_now()));
+        if(String.valueOf(barang.getKm_now()) != null){
+            txtKmnow.setText(String.valueOf(barang.getKm_now()));
         }
-        if(motor.getPhoto_url() != null){
-            if (!motor.getPhoto_url().equals("NOT")) {
+        if(barang.getPhoto_url() != null){
+            if (!barang.getPhoto_url().equals("NOT")) {
                 Glide.with(this)
-                        .load(motor.getPhoto_url())
+                        .load(barang.getPhoto_url())
                         .placeholder(R.color.colorSoft)
                         .dontAnimate()
                         .into(imgAvatar);
             }
         }
-        if(motor.getMotor_utama() != null){
-            if(!motor.getMotor_utama()){
+        if(barang.getMotor_utama() != null){
+            if(!barang.getMotor_utama()){
                 chNo.setChecked(true);
                 lnKmratano.setVisibility(View.VISIBLE);
                 chYes.setEnabled(false);
-                if(motor.getKm_ratarata() != 0){
-                    kmratamtrno.setText(String.valueOf(motor.getKm_ratarata()));
+                if(barang.getKm_ratarata() != 0){
+                    kmratamtrno.setText(String.valueOf(barang.getKm_ratarata()));
                 }
             }
-            if(motor.getMotor_utama()){
+            if(barang.getMotor_utama()){
                 chYes.setChecked(true);
                 lnKmratayes.setVisibility(View.VISIBLE);
                 chNo.setEnabled(false);
-                if(motor.getKm_ratarata() != 0){
-                    kmjarakkerja.setText(String.valueOf(motor.getKm_ratarata()));
+                if(barang.getKm_ratarata() != 0){
+                    kmjarakkerja.setText(String.valueOf(barang.getKm_ratarata()));
                 }
             }
         }
@@ -365,15 +365,15 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
 
     public void successUploadImage(String url) {
         if (url != null) {
-            motor.setPhoto_url(url);
+            barang.setPhoto_url(url);
         }
-        presenter.updateMotor(motor);
+        presenter.updateMotor(barang);
     }
 
-    public void successUpdateMotor(Motor motor) {
+    public void successUpdateMotor(Barang barang) {
         showLoading(false);
             Toast.makeText(this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
-            BaseApplication.get(this).createMotorComponent(motor);
+            BaseApplication.get(this).createMotorComponent(barang);
             finish();
             showLoading(false);
 
@@ -442,16 +442,16 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     }
 
     public void validate(){
-        String tglPajak = DateFormater.getDate(motor.getTahun_pajak(),"d MMMM");
+        String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
         if(btnPajak.getText().toString() != tglPajak ){
             myCalendar.add(Calendar.YEAR,1);
-            motor.setTahun_pajak(myCalendar.getTimeInMillis());
+            barang.setTahun_pajak(myCalendar.getTimeInMillis());
         }
 
         if (imgOriginal != null) {
-            presenter.uploadAvatar(motor, imgSmall, imgOriginal);
+            presenter.uploadAvatar(barang, imgSmall, imgOriginal);
         } else {
-            presenter.updateMotor(motor);
+            presenter.updateMotor(barang);
         }
 
         showLoading(true);
@@ -460,11 +460,11 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
 
     @OnClick(R.id.fabHistoryService)
     void showHistory(){
-        HistoryServiceActivity.startWithMotor(this,motor);
+        HistoryServiceActivity.startWithMotor(this, barang);
     }
 
     @OnClick(R.id.fabService)
     void addService(){
-        InputServiceActivity.startWithMotor(this,motor);
+        InputServiceActivity.startWithMotor(this, barang);
     }
 }

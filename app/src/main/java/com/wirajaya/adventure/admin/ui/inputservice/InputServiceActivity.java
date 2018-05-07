@@ -24,13 +24,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
 import com.wirajaya.adventure.admin.base.BaseApplication;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 import com.wirajaya.adventure.admin.ui.dialog.DialogUploadOption;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
@@ -51,7 +50,6 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
@@ -116,7 +114,7 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
 
 
     @Inject
-    Motor motor;
+    Barang barang;
 
     @Inject
     Service service;
@@ -135,7 +133,7 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
         Log.e(TAG, "onCreate: "+service );
 
         myCalender = Calendar.getInstance();
-        txtMotor.setText(motor.getSeri().toString().toUpperCase()+" "+motor.getPlat().toString().toUpperCase());
+        txtMotor.setText(barang.getSeri().toString().toUpperCase()+" "+ barang.getPlat().toString().toUpperCase());
         charJenService = getResources().getStringArray(R.array.list_jenisservice);
         charKetService = getResources().getStringArray(R.array.list_ketservice);
 
@@ -143,10 +141,10 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
     }
 
     private void initPicMotor() {
-        if(motor.getPhoto_url() != null){
-            if (!motor.getPhoto_url().equals("NOT")) {
+        if(barang.getPhoto_url() != null){
+            if (!barang.getPhoto_url().equals("NOT")) {
                 Glide.with(this)
-                        .load(motor.getPhoto_url())
+                        .load(barang.getPhoto_url())
                         .placeholder(R.color.colorSoft)
                         .dontAnimate()
                         .into(imgAvatar);
@@ -162,10 +160,10 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
                 .inject(this);
     }
 
-    public static void startWithMotor(Activity activity, final Motor motor) {
+    public static void startWithMotor(Activity activity, final Barang barang) {
         Intent intent = new Intent(activity, InputServiceActivity.class);
 
-        BaseApplication.get(activity).createMotorComponent(motor);
+        BaseApplication.get(activity).createMotorComponent(barang);
         activity.startActivity(intent);
     }
 
@@ -328,47 +326,47 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
             Random rand = new Random();
             String oid = Integer.toString(rand.nextInt(99999));
 
-            service.setIdmotor(motor.getIdmotor().toString());
-            service.setIdservice(motor.getIdmotor().toString()+String.valueOf(oid));
+            service.setIdmotor(barang.getIdmotor().toString());
+            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
             service.setJenisService(txtJenisService.getText().toString());
             service.setKeterangan(txtKetService.getText().toString()+" "+txtPart.getText().toString());
             service.setTglService(myCalender.getTimeInMillis());
             service.setKmservice(Integer.valueOf(txtKmService.getText().toString()));
 
-            motor.setKm_now(Integer.valueOf(txtKmService.getText().toString()));
-            motor.setTgl_service(myCalender.getTimeInMillis());
+            barang.setKm_now(Integer.valueOf(txtKmService.getText().toString()));
+            barang.setTgl_service(myCalender.getTimeInMillis());
 
             if(txtJenisService.getText().toString().equals("Service & Ganti Oli")){
-                motor.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
+                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
-                    presenter.updateMotor(motor,service);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.updateMotor(barang,service);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }if(txtJenisService.getText().toString().equals("Ganti Oli")){
-                motor.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
+                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
-                    presenter.updateMotor(motor,service);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.updateMotor(barang,service);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }else{
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
 
                 } else {
-                    presenter.updateMotor(motor,service);
+                    presenter.updateMotor(barang,service);
                 }
             }
 
@@ -417,8 +415,8 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
             Random rand = new Random();
             String oid = Integer.toString(rand.nextInt(99999));
 
-            service.setIdmotor(motor.getIdmotor().toString());
-            service.setIdservice(motor.getIdmotor().toString()+String.valueOf(oid));
+            service.setIdmotor(barang.getIdmotor().toString());
+            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
             service.setJenisService(txtJenisService.getText().toString());
             service.setKeterangan(txtKetService.getText().toString()+" "+txtPart.getText().toString());
             service.setTglService(myCalender.getTimeInMillis());
@@ -429,32 +427,32 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
             if(txtJenisService.getText().toString().equals("Service & Ganti Oli")){
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
-                    presenter.updateMotor(motor,service);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.updateMotor(barang,service);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }if(txtJenisService.getText().toString().equals("Ganti Oli")){
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
-                    presenter.updateMotor(motor,service);
-                    Log.e(TAG, "validate: "+motor.getKm_NextService());
+                    presenter.updateMotor(barang,service);
+                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }else{
 
                 if (imgOriginal != null) {
-                    presenter.uploadAvatar(motor,service, imgSmall, imgOriginal);
+                    presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
 
                 } else {
-                    presenter.updateMotor(motor,service);
+                    presenter.updateMotor(barang,service);
                 }
             }
 
@@ -462,11 +460,11 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
     }
 
 
-    public void successUploadImage(String url,Motor motor) {
+    public void successUploadImage(String url,Barang barang) {
         if (url != null) {
             service.setPhoto_url(url);
         }
-        presenter.updateMotor(motor,service);
+        presenter.updateMotor(barang,service);
     }
 
     public void succesSaveMotor(Service service){
@@ -492,7 +490,7 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
 
     private void showAlertDialog(String title, String desc, int icon) {
         final Intent intent = new Intent(this, MainAct.class);
-        intent.putExtra("motor", "motor");
+        intent.putExtra("barang", "barang");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         new AlertDialog.Builder(this)
                 .setTitle(title)

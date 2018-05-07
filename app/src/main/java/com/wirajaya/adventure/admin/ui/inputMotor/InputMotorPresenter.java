@@ -10,11 +10,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.wirajaya.adventure.admin.base.BasePresenter;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Category;
-import com.wirajaya.adventure.admin.data.model.Motor;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 import com.wirajaya.adventure.admin.data.remote.FirebaseImageService;
-import com.wirajaya.adventure.admin.data.remote.MotorService;
 import com.wirajaya.adventure.admin.data.remote.UserService;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 
@@ -31,14 +30,14 @@ public class InputMotorPresenter implements BasePresenter {
     User user;
     CategoryService categoryService;
     FirebaseImageService firebaseImageService;
-    Motor motor;
+    Barang barang;
 
-    public InputMotorPresenter(InputMotorActivity activity, UserService userService, User user, CategoryService categoryService, Motor motor, FirebaseImageService firebaseImageService){
+    public InputMotorPresenter(InputMotorActivity activity, UserService userService, User user, CategoryService categoryService, Barang barang, FirebaseImageService firebaseImageService){
         this.activity = activity;
         this.userService = userService;
         this.user = user;
         this.categoryService = categoryService;
-        this.motor = motor;
+        this.barang = barang;
         this.firebaseImageService = firebaseImageService;
     }
     @Override
@@ -114,17 +113,17 @@ public class InputMotorPresenter implements BasePresenter {
         });
     }
 
-    public void savemotor(Motor motor){
-        Log.e("InputMotor","idmotor "+motor.getIdmotor());
-        categoryService.saveMotor(motor).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
+    public void savemotor(Barang barang){
+        Log.e("InputMotor","idmotor "+ barang.getIdmotor());
+        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
             activity.showLoading(false);
-            Toast.makeText(activity, "Gagal menyimpan motor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });
     }
 
-    public void uploadAvatar(final Motor motor, byte[] data, final Uri uri){
+    public void uploadAvatar(final Barang barang, byte[] data, final Uri uri){
         activity.showLoading(true);
-        StorageReference avatarPartnerRef = firebaseImageService.getMotorImageRefOriginal(motor.getUserid(),motor.getIdmotor());
+        StorageReference avatarPartnerRef = firebaseImageService.getMotorImageRefOriginal(barang.getUserid(), barang.getIdmotor());
 
         UploadTask uploadTask = avatarPartnerRef.putFile(uri);
 // Register observers to listen for when the download is done or if it fails

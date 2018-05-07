@@ -258,7 +258,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Apakah ini motor utama anda? (mis. kerja,kuliah,dll)" />
+                    android:text="Apakah ini barang utama anda? (mis. kerja,kuliah,dll)" />
 
                 <RadioGroup
                     android:layout_width="match_parent"

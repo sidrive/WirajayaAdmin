@@ -1,7 +1,7 @@
 package com.wirajaya.adventure.admin.data.remote.motor;
 
 import com.wirajaya.adventure.admin.base.annotation.UserScope;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.model.Service;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 
@@ -10,16 +10,16 @@ import dagger.Provides;
 
 @Module
 public class MotorModule {
-    Motor motor;
+    Barang barang;
 
-    public MotorModule(Motor motor) {
-        this.motor = motor;
+    public MotorModule(Barang barang) {
+        this.barang = barang;
     }
 
     @Provides
     @UserScope
-    Motor provideMotor() {
-        return motor;
+    Barang provideMotor() {
+        return barang;
     }
 
     @Provides
@@ -38,7 +38,7 @@ public class MotorModule {
 //
 //    @Provides
 //    @UserScope
-//    Motor provideMotor(){
-//        return new Motor();
+//    Barang provideMotor(){
+//        return new Barang();
 //    }
 }

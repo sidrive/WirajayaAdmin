@@ -7,8 +7,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.wirajaya.adventure.admin.base.BasePresenter;
-import com.wirajaya.adventure.admin.data.model.Category;
-import com.wirajaya.adventure.admin.data.model.Motor;
+import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
 import com.wirajaya.adventure.admin.data.remote.UserService;
 import com.wirajaya.adventure.admin.data.remote.model.User;
@@ -50,16 +49,16 @@ public class MainPresenter implements BasePresenter {
         categoryService.getMotor(user.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Motor> listMotor = new ArrayList<Motor>();
+                List<Barang> listBarang = new ArrayList<Barang>();
 //                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Motor motor = postSnapshot.getValue(Motor.class);
+                    Barang barang = postSnapshot.getValue(Barang.class);
                     Log.e("MainPresenter", "onDataChange: " + dataSnapshot.getChildren());
-                    listMotor.add(motor);
-//                    Log.e("MainPresenter", "onDataChange: " + listMotor);
+                    listBarang.add(barang);
+//                    Log.e("MainPresenter", "onDataChange: " + listBarang);
                 }
 
-                activity.initListMotor(listMotor);
+                activity.initListMotor(listBarang);
             }
 
             @Override
@@ -93,10 +92,10 @@ public class MainPresenter implements BasePresenter {
         });
     }
 
-    public void updateMotor(Motor motor){
-        categoryService.saveMotor(motor).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
+    public void updateMotor(Barang barang){
+        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
             activity.showLoading(false);
-            Toast.makeText(activity, "Gagal menyimpan motor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });
 
     }

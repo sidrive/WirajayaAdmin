@@ -14,9 +14,9 @@
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_motorbike"
+        android:icon="@mipmap/ic_launcher_tenda"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_motorbike"
+        android:roundIcon="@mipmap/ic_launcher_tenda"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
