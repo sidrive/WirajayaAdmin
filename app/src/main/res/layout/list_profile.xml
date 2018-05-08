@@ -95,7 +95,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
-                    android:text="No SIM:"
+                    android:text="No Member :"
                     android:textColor="@color/colorWhite"
                     android:shadowColor="@color/colorDark"
                     android:shadowDx="2"
