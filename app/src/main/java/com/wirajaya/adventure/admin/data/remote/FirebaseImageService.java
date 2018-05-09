@@ -28,8 +28,8 @@ public class FirebaseImageService {
         return avatarRef;
     }
 
-    public StorageReference getMotorImageRefOriginal(String uid,String motorid){
-        StorageReference avatarRef = storageReference.child("motors/"+uid+"/"+motorid+"/profile.jpg");
+    public StorageReference getBarangImageRefOriginal(String kategori,String idbarang, String namaBrg){
+        StorageReference avatarRef = storageReference.child("barangs/"+kategori+"/"+idbarang+"/photo"+namaBrg+".jpg");
         return avatarRef;
     }
 

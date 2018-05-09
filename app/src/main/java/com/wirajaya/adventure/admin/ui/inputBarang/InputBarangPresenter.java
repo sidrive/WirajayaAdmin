@@ -1,4 +1,4 @@
-package com.wirajaya.adventure.admin.ui.inputMotor;
+package com.wirajaya.adventure.admin.ui.inputBarang;
 
 import android.net.Uri;
 import android.util.Log;
@@ -20,19 +20,21 @@ import com.wirajaya.adventure.admin.data.remote.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.fabric.sdk.android.Fabric.TAG;
+
 /**
  * Created by ikun on 11/01/18.
  */
 
-public class InputMotorPresenter implements BasePresenter {
-    InputMotorActivity activity;
+public class InputBarangPresenter implements BasePresenter {
+    InputBarangActivity activity;
     UserService userService;
     User user;
     CategoryService categoryService;
     FirebaseImageService firebaseImageService;
     Barang barang;
 
-    public InputMotorPresenter(InputMotorActivity activity, UserService userService, User user, CategoryService categoryService, Barang barang, FirebaseImageService firebaseImageService){
+    public InputBarangPresenter(InputBarangActivity activity, UserService userService, User user, CategoryService categoryService, Barang barang, FirebaseImageService firebaseImageService){
         this.activity = activity;
         this.userService = userService;
         this.user = user;
@@ -63,7 +65,9 @@ public class InputMotorPresenter implements BasePresenter {
                     listCategories.add(category);
                 }
 
-                activity.initMerk(listCategories);
+                Log.e(TAG, "onDataChange: "+listCategories );
+
+                activity.initKategori(listCategories);
             }
 
             @Override
@@ -113,9 +117,9 @@ public class InputMotorPresenter implements BasePresenter {
         });
     }
 
-    public void savemotor(Barang barang){
-        Log.e("InputMotor","idmotor "+ barang.getIdmotor());
-        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
+    public void savebarang(Barang barang){
+        Log.e("InputBarang","idbarang "+ barang);
+        categoryService.saveBarang(barang).addOnCompleteListener(task -> activity.succesSaveBarang()).addOnFailureListener(e -> {
             activity.showLoading(false);
             Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });
@@ -123,7 +127,7 @@ public class InputMotorPresenter implements BasePresenter {
 
     public void uploadAvatar(final Barang barang, byte[] data, final Uri uri){
         activity.showLoading(true);
-        StorageReference avatarPartnerRef = firebaseImageService.getMotorImageRefOriginal(barang.getUserid(), barang.getIdmotor());
+        StorageReference avatarPartnerRef = firebaseImageService.getBarangImageRefOriginal(barang.getKategoriBarang(), barang.getIdbarang(), barang.getNamaBarang());
 
         UploadTask uploadTask = avatarPartnerRef.putFile(uri);
 // Register observers to listen for when the download is done or if it fails

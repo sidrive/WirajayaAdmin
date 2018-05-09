@@ -93,7 +93,7 @@ public class MainPresenter implements BasePresenter {
     }
 
     public void updateMotor(Barang barang){
-        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
+        categoryService.saveBarang(barang).addOnCompleteListener(task -> activity.succesSaveMotor()).addOnFailureListener(e -> {
             activity.showLoading(false);
             Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });

@@ -29,7 +29,7 @@ import com.wirajaya.adventure.admin.data.adapter.AdapterStatusMotor;
 import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
-import com.wirajaya.adventure.admin.ui.inputMotor.InputMotorActivity;
+import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +136,7 @@ public class MainAct extends BaseActivity {
 
     @OnClick(R.id.button2)
     public void test(){
-        InputMotorActivity.startWithUser(this, user);
+        InputBarangActivity.startWithUser(this, user);
     }
 
     @OnClick(R.id.button3)

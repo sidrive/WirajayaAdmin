@@ -60,7 +60,7 @@ public class InputServicePresenter implements BasePresenter {
 
     public void updateMotor(Barang barang, Service service){
         Log.e("InputMotor","idmotor "+ barang.getIdmotor());
-        categoryService.saveMotor(barang).addOnCompleteListener(task -> activity.succesSaveMotor(service)).addOnFailureListener(e -> {
+        categoryService.saveBarang(barang).addOnCompleteListener(task -> activity.succesSaveMotor(service)).addOnFailureListener(e -> {
             activity.showLoading(false);
             Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });

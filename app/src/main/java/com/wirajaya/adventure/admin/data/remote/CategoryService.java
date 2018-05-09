@@ -17,7 +17,7 @@ public class CategoryService {
     }
 
     public DatabaseReference getMerk(){
-        return databaseRef.child("merk");
+        return databaseRef.child("category");
     }
 
     public DatabaseReference getType(String id){
@@ -28,8 +28,8 @@ public class CategoryService {
         return databaseRef.child("seri").child(id);
     }
 
-    public Task<Void> saveMotor(Barang barang){
-        return databaseRef.child("motors").child(barang.getUserid()).child(barang.getIdmotor()).setValue(barang);
+    public Task<Void> saveBarang(Barang barang){
+        return databaseRef.child("barangs").child(barang.getKategoriBarang()).child(barang.getIdbarang()).setValue(barang);
     }
 
     public DatabaseReference getMotor(String id){

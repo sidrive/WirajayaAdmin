@@ -61,26 +61,14 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     private static final int RC_CAMERA_PERM = 205;
     public static Uri mCapturedImageURI;
 
-    @Bind(R.id.txtMerk)
+    @Bind(R.id.txtKategori)
     TextView txtMerk;
 
-    @Bind(R.id.txtType)
+    @Bind(R.id.txtKeterangan)
     TextView txtType;
 
     @Bind(R.id.txtSeri)
     TextView txtSeri;
-
-    @Bind(R.id.txt_plat)
-    EditText txtPlat;
-
-    @Bind(R.id.btn_pajak)
-    Button btnPajak;
-
-    @Bind(R.id.btn_tahunmtr)
-    Button btnTahunmtr;
-
-    @Bind(R.id.txt_norangka)
-    EditText txtNorangka;
 
     @Bind(R.id.txt_kmNow)
     EditText txtKmnow;
@@ -127,7 +115,7 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input_motor);
+        setContentView(R.layout.activity_input_barang);
         ButterKnife.bind(this);
 
         initMotor();
@@ -184,19 +172,7 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
         if(barang.getSeri() != null){
             txtSeri.setText(barang.getSeri().toString());
         }
-        if(barang.getPlat() != null){
-            txtPlat.setText(barang.getPlat().toString());
-        }
-        if(barang.getTahun_pajak() != null){
-            String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
-            btnPajak.setText(tglPajak);
-        }
-        if(barang.getTahun_buat() != null){
-            btnTahunmtr.setText(barang.getTahun_buat().toString());
-        }
-        if(barang.getNo_rangka() != null){
-            txtNorangka.setText(barang.getNo_rangka().toString());
-        }
+
         if(String.valueOf(barang.getKm_now()) != null){
             txtKmnow.setText(String.valueOf(barang.getKm_now()));
         }
@@ -283,29 +259,6 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
         validate();
     }
 
-    @OnClick(R.id.btn_pajak)
-    void showDatePajak(){
-        btnPajak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(EditMotorActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        myCalendar.set(Calendar.MONTH, month);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        myCalendar.set(Calendar.YEAR,year);
-
-                        String formatTanggal = "dd MMMM";
-                        SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
-                        btnPajak.setText(sdf.format(myCalendar.getTime()));
-                    }
-                },
-                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-    }
 
     @Override
     public void onGalleryClicked(Dialog dialog) {
@@ -443,10 +396,6 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
 
     public void validate(){
         String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
-        if(btnPajak.getText().toString() != tglPajak ){
-            myCalendar.add(Calendar.YEAR,1);
-            barang.setTahun_pajak(myCalendar.getTimeInMillis());
-        }
 
         if (imgOriginal != null) {
             presenter.uploadAvatar(barang, imgSmall, imgOriginal);

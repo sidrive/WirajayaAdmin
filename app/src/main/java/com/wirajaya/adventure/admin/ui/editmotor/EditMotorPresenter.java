@@ -44,7 +44,7 @@ public class EditMotorPresenter implements BasePresenter {
     }
 
     public void uploadAvatar(final Barang barang, byte[] data, final Uri uri){
-        StorageReference avatarPartnerRef = firebaseImageService.getMotorImageRefOriginal(barang.getUserid(), barang.getIdmotor());
+        StorageReference avatarPartnerRef = firebaseImageService.getBarangImageRefOriginal(barang.getKategoriBarang(), barang.getIdbarang(), barang.getNamaBarang());
 
         UploadTask uploadTask = avatarPartnerRef.putFile(uri);
 // Register observers to listen for when the download is done or if it fails

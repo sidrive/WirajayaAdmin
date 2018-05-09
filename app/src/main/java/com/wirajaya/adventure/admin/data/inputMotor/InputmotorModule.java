@@ -1,7 +1,7 @@
 package com.wirajaya.adventure.admin.data.inputMotor;
 
 import com.wirajaya.adventure.admin.base.annotation.MainScope;
-import com.wirajaya.adventure.admin.ui.inputMotor.InputMotorActivity;
+import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,15 +12,15 @@ import dagger.Provides;
 
 @Module
 public class InputmotorModule {
-    InputMotorActivity activity;
+    InputBarangActivity activity;
 
-    public InputmotorModule(InputMotorActivity activity){
+    public InputmotorModule(InputBarangActivity activity){
         this.activity = activity;
     }
 
     @Provides
     @MainScope
-    InputMotorActivity provideInputMotor(){
+    InputBarangActivity provideInputMotor(){
         return activity;
     }
 }
