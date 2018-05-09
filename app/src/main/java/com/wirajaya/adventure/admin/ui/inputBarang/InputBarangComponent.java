@@ -1,4 +1,4 @@
-package com.wirajaya.adventure.admin.ui.inputMotor;
+package com.wirajaya.adventure.admin.ui.inputBarang;
 
 import com.wirajaya.adventure.admin.base.annotation.ActivityScope;
 
@@ -11,10 +11,10 @@ import dagger.Subcomponent;
 @ActivityScope
 @Subcomponent(
         modules = {
-                InputMotorModule.class
+                InputBarangModule.class
         }
 )
 
-public interface InputMotorComponent {
-    InputMotorActivity inject(InputMotorActivity activity);
+public interface InputBarangComponent {
+    InputBarangActivity inject(InputBarangActivity activity);
 }

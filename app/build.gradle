@@ -52,7 +52,6 @@ android {
     }
 }
 
-
 dependencies {
     // Firebase dependencies
     compile rootProject.ext.fbcore

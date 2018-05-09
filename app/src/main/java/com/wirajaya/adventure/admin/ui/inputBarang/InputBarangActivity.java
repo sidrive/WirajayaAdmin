@@ -1,4 +1,4 @@
-package com.wirajaya.adventure.admin.ui.inputMotor;
+package com.wirajaya.adventure.admin.ui.inputBarang;
 
 import android.Manifest;
 import android.app.Activity;
@@ -61,9 +61,9 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by ikun on 11/01/18.
  */
 
-public class InputMotorActivity extends BaseActivity implements DialogUploadOption.OnDialogUploadOptionClickListener, EasyPermissions.PermissionCallbacks {
+public class InputBarangActivity extends BaseActivity implements DialogUploadOption.OnDialogUploadOptionClickListener, EasyPermissions.PermissionCallbacks {
 
-    private static final String TAG = "DetailMotorActivity";
+    private static final String TAG = "DetailBarangActivity";
     public static final int REQUST_CODE_CAMERA = 1002;
     public static final int REQUST_CODE_GALLERY = 1001;
     private static final int RC_CAMERA_PERM = 205;
@@ -75,35 +75,11 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     @Bind(R.id.viewPrrogress)
     LinearLayout viewProgress;
 
-    @Bind(R.id.lnAddService)
-    LinearLayout lnAddService;
+    @Bind(R.id.txtKategori)
+    TextView txtkategori;
 
-    @Bind(R.id.chNo)
-    RadioButton chNo;
-
-    @Bind(R.id.chYes)
-    RadioButton chYes;
-
-    @Bind(R.id.lnKmratano)
-    LinearLayout lnKmratano;
-
-    @Bind(R.id.lnKmratayes)
-    LinearLayout lnKmratayes;
-
-    @Bind(R.id.txt_kmratamtrno)
-    EditText kmratamtrno;
-
-    @Bind(R.id.txt_kmjarakkerja)
-    EditText kmjarakkerja;
-
-    @Bind(R.id.txt_kmratakerja)
-    EditText kmratakerja;
-
-    @Bind(R.id.txtMerk)
-    TextView txtmerk;
-
-    @Bind(R.id.txtType)
-    TextView txttype;
+    @Bind(R.id.txtKeterangan)
+    TextView txtket;
 
     @Bind(R.id.txtSeri)
     TextView txtseri;
@@ -114,45 +90,41 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     @Bind(R.id.imageView2)
     ImageView imgAvatar;
 
-    @Bind(R.id.txt_plat)
-    TextView txtplat;
+    @Bind(R.id.txt_namaBrg)
+    TextView namaBrg;
 
+    @Bind(R.id.txt_merk)
+    TextView txtMerk;
 
-    @Bind(R.id.txt_norangka)
-    TextView norangka;
+    @Bind(R.id.txt_harga)
+    TextView txtHarga;
 
-    @Bind(R.id.txt_kmNow)
-    TextView txtKmNow;
-
-    @Bind(R.id.btn_pajak)
-    Button btnpajak;
-
-    @Bind(R.id.btn_tahunmtr)
-    Button btnthnmtr;
+    @Bind(R.id.txt_stok)
+    TextView txtStok;
 
     @Inject
     Barang barang;
 
     @Inject
-    InputMotorPresenter presenter;
+    InputBarangPresenter presenter;
 
     @Inject
     User user;
 
-    CharSequence[] merk;
-    CharSequence[] type;
+    CharSequence[] kategori;
+    CharSequence[] keterangan;
     CharSequence[] seri;
 
-    List<Category> listMerk;
-    List<Category> listType;
+    List<Category> listKategori;
+    List<Category> listKeterangan;
     List<Category> listSeri;
 
-    int merkVal;
-    int typeVal;
+    int kategoriVal;
+    int keteranganVal;
     int seriVal;
 
-    String merkID;
-    String typeID;
+    String kategoriID;
+    String keteranganID;
     String seriID;
 
     Calendar myCalendar;
@@ -163,18 +135,14 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input_motor);
+        setContentView(R.layout.activity_input_barang);
         ButterKnife.bind(this);
 
         myCalendar = Calendar.getInstance();
 
 
-        initInputService();
     }
 
-    private void initInputService() {
-        lnAddService.setVisibility(View.GONE);
-    }
 
 
     @Override
@@ -202,39 +170,39 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     @Override
     protected void setupActivityComponent() {
         BaseApplication.get(this).getUserComponent()
-                .plus(new InputMotorModule(this))
+                .plus(new InputBarangModule(this))
                 .inject(this);
         BaseApplication.get(this).createInputMotorComponent(this);
     }
 
     public static void startWithUser(Activity activity, final User user) {
-        Intent intent = new Intent(activity, InputMotorActivity.class);
+        Intent intent = new Intent(activity, InputBarangActivity.class);
 
         BaseApplication.get(activity).createUserComponent(user);
         activity.startActivity(intent);
     }
 
-    @OnClick(R.id.ln_merk)
-    void showCategoryMerk(){
-        showMerk();
+    @OnClick(R.id.ln_kate)
+    void showCategoryKategori(){
+        showKate();
     }
 
-    @OnClick(R.id.ln_type)
-    void showCategoryType(){
-        showType();
+    @OnClick(R.id.ln_ket)
+    void showCategoryKeterangan(){
+        showKete();
     }
 
-    @OnClick(R.id.ln_seri)
-    void showCategoryVarian(){
-        showSeri();
-    }
+//    @OnClick(R.id.ln_seri)
+//    void showCategoryVarian(){
+//        showSeri();
+//    }
 
-    private void showMerk(){
+    private void showKate(){
         final AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.MyAlertDialogStyle);
-        alert.setTitle("Pilih Merk Barang");
-        alert.setSingleChoiceItems(merk, merkVal, (dialog, which) -> {
-            handleSelectCategoryMerk(which);
-            changeLogo();
+        alert.setTitle("Pilih Kategori Barang");
+        alert.setSingleChoiceItems(kategori, kategoriVal, (dialog, which) -> {
+            handleSelectCategoryKategori(which);
+//            changeLogo();
             dialog.dismiss();
         });
         alert.setIcon(R.drawable.ic_2000px_motorbike_svg);
@@ -242,30 +210,30 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
     }
 
-    private void changeLogo(){
-        if((txtmerk.getText().toString()).equalsIgnoreCase("HONDA")){
-            imglogo.setImageResource(R.drawable.ic_logo_honda);
-        }if((txtmerk.getText().toString()).equalsIgnoreCase("YAMAHA")){
-            imglogo.setImageResource(R.drawable.ic_logo_yamaha);
-        }if((txtmerk.getText().toString()).equalsIgnoreCase("SUZUKI")){
-            imglogo.setImageResource(R.drawable.ic_logo_suzuki);
-        }if((txtmerk.getText().toString()).equalsIgnoreCase("KAWASAKI")){
-            imglogo.setImageResource(R.drawable.ic_logo_kawasaki);
-        }
+//    private void changeLogo(){
+//        if((txtmerk.getText().toString()).equalsIgnoreCase("HONDA")){
+//            imglogo.setImageResource(R.drawable.ic_logo_honda);
+//        }if((txtmerk.getText().toString()).equalsIgnoreCase("YAMAHA")){
+//            imglogo.setImageResource(R.drawable.ic_logo_yamaha);
+//        }if((txtmerk.getText().toString()).equalsIgnoreCase("SUZUKI")){
+//            imglogo.setImageResource(R.drawable.ic_logo_suzuki);
+//        }if((txtmerk.getText().toString()).equalsIgnoreCase("KAWASAKI")){
+//            imglogo.setImageResource(R.drawable.ic_logo_kawasaki);
+//        }
+//    }
+
+    private void handleSelectCategoryKategori(int pos){
+        kategoriVal = pos;
+        String kategoris = kategori[pos].toString();
+        txtkategori.setText(kategoris);
+        presenter.getSubCategories(listKategori.get(pos).getId());
     }
 
-    private void handleSelectCategoryMerk(int pos){
-        merkVal = pos;
-        String merks = merk[pos].toString();
-        txtmerk.setText(merks);
-        presenter.getSubCategories(listMerk.get(pos).getId());
-    }
-
-    private void showType() {
+    private void showKete() {
         final AlertDialog.Builder alert = new AlertDialog.Builder(this,R.style.MyAlertDialogStyle);
-        alert.setTitle("Pilih Type Barang");
-        alert.setSingleChoiceItems(type, typeVal, (dialog, which) -> {
-            handleSelectSubCategoryType(which);
+        alert.setTitle("Pilih Keterangan Barang");
+        alert.setSingleChoiceItems(keterangan, keteranganVal, (dialog, which) -> {
+            handleSelectSubCategoryKet(which);
             dialog.dismiss();
 
         });
@@ -273,13 +241,13 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         alert.show();
     }
 
-    private void handleSelectSubCategoryType(int pos){
-        typeVal = pos;
-        String types = type[pos].toString();
-        txttype.setText(types);
+    private void handleSelectSubCategoryKet(int pos){
+        keteranganVal = pos;
+        String keterangans = keterangan[pos].toString();
+        txtket.setText(keterangans);
 
-        merkID = listType.get(pos).getId();
-        presenter.getLevels(listType.get(pos).getSeri());
+        kategoriID = listKeterangan.get(pos).getId();
+//        presenter.getLevels(listKeterangan.get(pos).getSeri());
     }
 
     private void showSeri() {
@@ -302,19 +270,19 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     }
 
     private void init(String id){
-        for (int i=0;i<listMerk.size();i++){
-            String catId = listMerk.get(i).getId();
+        for (int i=0;i<listKategori.size();i++){
+            String catId = listKategori.get(i).getId();
             if (id.equals(catId)){
-                handleSelectCategoryMerk(i);
+                handleSelectCategoryKategori(i);
             }
         }
     }
 
-    public void initMerk(List<Category> listMerk){
-        this.listMerk = listMerk;
-        merk = new CharSequence[listMerk.size()];
-        for (int i=0;i<listMerk.size();i++){
-            merk[i] = listMerk.get(i).getName();
+    public void initKategori(List<Category> listKategori){
+        this.listKategori = listKategori;
+        kategori = new CharSequence[listKategori.size()];
+        for (int i=0;i<listKategori.size();i++){
+            kategori[i] = listKategori.get(i).getName();
         }
 
         if (seriID != null){
@@ -325,10 +293,10 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
 
 
     public void initType(List<Category> listType){
-        this.listType = listType;
-        type = new CharSequence[listType.size()];
+        this.listKeterangan = listType;
+        keterangan = new CharSequence[listType.size()];
         for (int i=0;i<listType.size();i++){
-            type[i] = listType.get(i).getName();
+            keterangan[i] = listType.get(i).getName();
         }
 
     }
@@ -367,50 +335,28 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         validate();
     }
 
-    @OnClick(R.id.btn_pajak)
-    void initTahunpajak(){
-        btnpajak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(InputMotorActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                        myCalendar.set(Calendar.MONTH, month);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        myCalendar.set(Calendar.YEAR,year);
-
-                        String formatTanggal = "dd MMMM y";
-                        SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
-                        btnpajak.setText(sdf.format(myCalendar.getTime()));
-                    }
-                },
-                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-    }
-
 
     public void validate(){
-        txtmerk.setError(null);
-        txttype.setError(null);
+        txtkategori.setError(null);
+        txtket.setError(null);
         txtseri.setError(null);
-        txtplat.setError(null);
-        btnpajak.setError(null);
-        btnthnmtr.setError(null);
+        namaBrg.setError(null);
+        txtMerk.setError(null);
+        txtStok.setError(null);
+        txtHarga.setError(null);
+
 
         boolean cancel = false;
         View focusView = null;
 
-        if(TextUtils.isEmpty(txtmerk.getText().toString()) && txtmerk.getText().toString().equals("Merk Barang")){
-            txtmerk.setError(strErrRequired);
-            focusView = txtmerk;
+        if(TextUtils.isEmpty(txtkategori.getText().toString()) && txtkategori.getText().toString().equals("Kategori")){
+            txtkategori.setError(strErrRequired);
+            focusView = txtkategori;
             cancel = true;
         }
-        if(TextUtils.isEmpty(txttype.getText().toString()) && txttype.getText().toString().equals("Type Barang")){
-            txttype.setError(strErrRequired);
-            focusView = txttype;
+        if(TextUtils.isEmpty(txtket.getText().toString()) && txtket.getText().toString().equals("Keterangan")){
+            txtket.setError(strErrRequired);
+            focusView = txtket;
             cancel = true;
         }
         if(TextUtils.isEmpty(txtseri.getText().toString()) && txtseri.getText().toString().equals("Varian")){
@@ -418,78 +364,54 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
             focusView = txtseri;
             cancel = true;
         }
-        if(TextUtils.isEmpty(txtplat.getText().toString())){
-            txtplat.setError(strErrRequired);
-            focusView = txtplat;
+        if(TextUtils.isEmpty(namaBrg.getText().toString()) && namaBrg.getText().toString().equals("Nama Barang")){
+            namaBrg.setError(strErrRequired);
+            focusView = namaBrg;
             cancel = true;
         }
-        if(TextUtils.isEmpty(btnpajak.getText().toString())){
-            btnpajak.setError(strErrRequired);
-            focusView = btnpajak;
+        if(TextUtils.isEmpty(txtMerk.getText().toString()) && txtMerk.getText().toString().equals("Merk Barang")){
+            txtMerk.setError(strErrRequired);
+            focusView = txtMerk;
             cancel = true;
         }
-        if(TextUtils.isEmpty(btnthnmtr.getText().toString())){
-            btnthnmtr.setError(strErrRequired);
-            focusView = btnthnmtr;
+        if(TextUtils.isEmpty(txtStok.getText().toString()) && txtStok.getText().toString().equals("Jumlah Barang")){
+            txtMerk.setError(strErrRequired);
+            focusView = txtHarga;
             cancel = true;
         }
-        if(TextUtils.isEmpty(txtKmNow.getText().toString())){
-            txtKmNow.setError(strErrRequired);
-            focusView = txtKmNow;
+        if(TextUtils.isEmpty(txtHarga.getText().toString()) && txtHarga.getText().toString().equals("Harga Barang")){
+            txtHarga.setError(strErrRequired);
+            focusView = txtHarga;
             cancel = true;
         }
-        if(chYes.isChecked()){
-            if(TextUtils.isEmpty(kmjarakkerja.getText().toString())){
-                kmjarakkerja.setError(strErrRequired);
-                focusView = kmjarakkerja;
-                cancel = true;
-            }
-        }
-        if(chNo.isChecked()){
-            if(TextUtils.isEmpty(kmratamtrno.getText().toString())){
-                kmratamtrno.setError(strErrRequired);
-                focusView = kmratamtrno;
-                cancel = true;
-            }
-        }
+
+
         if (cancel) {
             focusView.requestFocus();
         }else {
 
-            barang.setUserid(user.getUid());
-            barang.setIdmotor(String.valueOf(txtmerk.getText())+String.valueOf(txtplat.getText()).toUpperCase());
-            barang.setMerk(String.valueOf(txtmerk.getText()));
-            barang.setType(String.valueOf(txttype.getText()));
-            barang.setSeri(String.valueOf(txtseri.getText()));
-            barang.setPlat(String.valueOf(txtplat.getText()).toUpperCase());
-            barang.setTahun_buat(String.valueOf(btnthnmtr.getText()));
-            barang.setNo_rangka(String.valueOf(norangka.getText()));
+            barang.setIdbarang(String.valueOf(txtkategori.getText()+namaBrg.getText().toString()));
+            barang.setKategoriBarang(String.valueOf(txtkategori.getText()));
+            barang.setKeteranganBarang(String.valueOf(txtket.getText()));
+            barang.setNamaBarang(String.valueOf(namaBrg.getText()));
+            barang.setMerkBarang(String.valueOf(txtMerk.getText()));
+            barang.setStokBarang(Integer.valueOf(txtStok.getText().toString()));
+            barang.setHargaBarang(Integer.valueOf(txtHarga.getText().toString()));
 
-            Log.e(TAG, "validate before: "+myCalendar);
-            myCalendar.add(Calendar.YEAR,1);
-            barang.setTahun_pajak(myCalendar.getTimeInMillis());
-            Log.e(TAG, "validate after: "+myCalendar );
-
-            barang.setKm_now(Integer.valueOf(txtKmNow.getText().toString()));
-            if(chYes.isChecked()){
-                if(TextUtils.isEmpty(kmratakerja.getText().toString())){
-                    barang.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+0);
-                } else {
-                    barang.setKm_ratarata(Integer.valueOf(kmjarakkerja.getText().toString())+Integer.valueOf(kmratakerja.getText().toString()));
-                }
-            }
 
             if (imgOriginal != null) {
                 presenter.uploadAvatar(barang, imgSmall, imgOriginal);
+
             } else {
-                presenter.savemotor(barang);
+                presenter.savebarang(barang);
+                Log.e(TAG, "validate: "+barang.getKategoriBarang());
             }
 
         }
 
     }
 
-    public void succesSaveMotor() {
+    public void succesSaveBarang() {
         showLoading(false);
         String title = "Barang disimpan";
         String desc = "Kami sedang melakukan update data barang";
@@ -525,35 +447,6 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
     }
 
 
-    @OnClick(R.id.btn_tahunmtr)
-    void showYear(){
-        final AlertDialog.Builder d = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.year_picker_dialog, null);
-        d.setTitle("Pilih Tahun Pembuatan Barang Sesuai BPKB");
-        d.setView(dialogView);
-        final NumberPicker numberPicker = (NumberPicker) dialogView.findViewById(R.id.dialog_number_picker);
-        int yearNow = myCalendar.get(Calendar.YEAR);
-        Log.e("InputMotorActivity", "showYear: " + myCalendar.get(Calendar.YEAR));
-        numberPicker.setMaxValue(yearNow);
-        numberPicker.setMinValue(2004);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-//                Log.d(TAG, "onValueChange: ");
-            }
-        });
-        d.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Log.e("activity", "onClick: " + numberPicker.getValue());
-                btnthnmtr.setText(String.valueOf(numberPicker.getValue()));
-            }
-        });
-        AlertDialog alertDialog = d.create();
-        alertDialog.show();
-    }
 
 
 
@@ -665,7 +558,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         if (url != null) {
             barang.setPhoto_url(url);
         }
-        presenter.savemotor(barang);
+        presenter.savebarang(barang);
     }
 
     public void successUpdateMotor(Barang barang) {
@@ -731,28 +624,7 @@ public class InputMotorActivity extends BaseActivity implements DialogUploadOpti
         }
     }
 
-    @OnCheckedChanged(R.id.chYes)
-    void showMotorutama(){
-        if(chYes.isChecked()){
-            lnKmratayes.setVisibility(View.VISIBLE);
-            if(lnKmratano.getVisibility() == View.VISIBLE){
-                lnKmratano.setVisibility(View.GONE);
-            }
-        }
 
-    }
-
-    @OnCheckedChanged(R.id.chNo)
-    void showMotor(){
-        if(chNo.isChecked()){
-            lnKmratano.setVisibility(View.VISIBLE);
-            if(lnKmratayes.getVisibility() == View.VISIBLE){
-                lnKmratayes.setVisibility(View.GONE);
-            }
-
-        }
-
-    }
 
 
 }
