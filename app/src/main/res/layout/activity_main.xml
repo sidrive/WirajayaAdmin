@@ -104,23 +104,70 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:visibility="gone"/>
+            <FrameLayout
+                android:id="@+id/frameFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
+
+
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="120dp"
         android:layout_gravity="bottom"
         android:gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/lnbutton">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:id="@+id/ivTendaDoom"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher_tenda"/>
+            <ImageView
+                android:id="@+id/ivTendaPramuka"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher_tenda"/>
+            <ImageView
+                android:id="@+id/ivCarrier"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher_tenda"/>
+            <ImageView
+                android:id="@+id/ivAcc"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_launcher_tenda"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:visibility="gone">
 
 
             <Button
@@ -141,6 +188,7 @@
                 android:text="Profile"
                 android:drawableEnd="@mipmap/ic_launcher_user"
                 android:background="@drawable/bg_radius_white_selector"/>
+
         </LinearLayout>
 
     </LinearLayout>

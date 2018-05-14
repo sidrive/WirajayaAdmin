@@ -6,13 +6,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +37,7 @@ import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
+import com.wirajaya.adventure.admin.ui.mainfragment.TendaFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +54,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by ikun on 02/01/18.
  */
 
-public class MainAct extends BaseActivity {
+public class MainAct extends BaseActivity implements TendaFragment.OnFragmentInteractionListener{
 
     private static final int RC_LOC_PERM = 1001;
 
@@ -62,6 +70,9 @@ public class MainAct extends BaseActivity {
     @Bind(R.id.listprofile)
     RecyclerView lsprofile;
 
+    @Bind(R.id.frameFragment)
+    FrameLayout frame;
+
 
     @Inject
     MainPresenter presenter;
@@ -71,6 +82,8 @@ public class MainAct extends BaseActivity {
 
     @Inject
     Barang barang;
+
+    TendaFragment tendaFragment = new TendaFragment();
 
     private AdapterStatusMotor adapterStatusMotor;
     private AdapterProfileUser adapterProfileUser;
@@ -96,6 +109,8 @@ public class MainAct extends BaseActivity {
         initUser();
         initPager();
     }
+
+
     @Override
     protected void setupActivityComponent() {
         BaseApplication.get(this).getUserComponent()
@@ -260,5 +275,24 @@ public class MainAct extends BaseActivity {
             EasyPermissions.requestPermissions(this, getString(R.string.ijin_lokasi),
                     RC_LOC_PERM, perms);
         }
+    }
+
+    private void initFragment(Fragment classFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameFragment, classFragment);
+        transaction.commit();
+
+    }
+
+
+
+    @OnClick(R.id.ivTendaDoom)
+    public void showFragment(){
+        initFragment(new TendaFragment());
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

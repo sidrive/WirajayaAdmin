@@ -39,4 +39,8 @@ public class CategoryService {
     public Task<Void> saveService(Service service){
         return databaseRef.child("service").child(service.getIdmotor()).child(service.getIdservice()).setValue(service);
     }
+
+    public DatabaseReference getTendaDom(){
+        return databaseRef.child("barangs").child("Tenda Doom");
+    }
 }

@@ -56,7 +56,7 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mcontext);
-        View view = inflater.inflate(R.layout.list_item_motor, parent, false);
+        View view = inflater.inflate(R.layout.list_item_barang, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
 
@@ -83,138 +83,138 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
         Long sisaPajak = barang.getTahun_pajak() - System.currentTimeMillis();
         int diff = (int) Math.floor(sisaPajak/1000/60/60/24);
 
-        holder.txtplat.setText(barang.getSeri()+" "+ barang.getPlat());
-        holder.txtmerk.setText(barang.getMerk());
-        holder.txtTglPajak.setText(tglPajak);
-        holder.txtServiceAkhir.setText(tglService);
-        holder.txtSisaPajak.setText(String.valueOf(diff)+" hari sebelum jatuh tempo bayar pajak");
-
-
-        float from = barang.getKm_NextService()- barang.getKm_now();
-        float from1 = 2500-from;
-        float hasil = (from1/2500)*100;
-        Log.e(TAG, "onBindViewHolder: "+hasil);
-        ProgressBarAnimation anim = new ProgressBarAnimation(holder.progresKilometer, hasil-2, hasil);
-        anim.setDuration(1000);
-        anim.setRepeatMode(ValueAnimator.RESTART);
-        anim.setRepeatCount(ValueAnimator.INFINITE);
-        anim.setInterpolator(new LinearInterpolator());
-
-        holder.progresKilometer.setSecondaryProgress((int) hasil);
-        holder.progresKilometer.startAnimation(anim);
-        holder.txtKmNow.setText(barang.getKm_now()+"/"+ barang.getKm_NextService()+" KM");
-
-        holder.btnUpdateKm.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                // get prompts.xml view
-                LayoutInflater li = LayoutInflater.from(mcontext);
-                View promptsView = li.inflate(R.layout.updatekm, null);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        mcontext);
-
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
-
-                final EditText userInput = (EditText) promptsView
-                        .findViewById(R.id.txtUpdatekm);
-                userInput.setText(String.valueOf(barang.getKm_now()));
-                // set dialog message
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("Update",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-
-                                    barang.setKm_now(Integer.valueOf(userInput.getText().toString()));
-
-                                        activity.updateKM(barang);
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-
-            }
-        });
-
-        holder.btnBayarPajak.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // get prompts.xml view
-                LayoutInflater li = LayoutInflater.from(mcontext);
-                View promptsView = li.inflate(R.layout.bayarpajak, null);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        mcontext);
-
-                // set prompts.xml to alertdialog builder
-                alertDialogBuilder.setView(promptsView);
-
-                final Button btnTglPajak = (Button) promptsView.findViewById(R.id.btn_pajak);
-
-                Calendar myCalendar;
-                myCalendar = Calendar.getInstance();
-
-                btnTglPajak.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new DatePickerDialog(mcontext, new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                                myCalendar.set(Calendar.MONTH, month);
-                                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                                myCalendar.set(Calendar.YEAR,year);
-
-                                String formatTanggal = "dd MMMM y";
-                                SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
-                                btnTglPajak.setText(sdf.format(myCalendar.getTime()));
-                            }
-                        },
-                                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-                    }
-                });
-
-                alertDialogBuilder
-                        .setCancelable(false)
-                        .setPositiveButton("Update",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
-
-                                        myCalendar.add(Calendar.YEAR,1);
-                                        barang.setTahun_pajak(myCalendar.getTimeInMillis());
-
-                                        activity.updateKM(barang);
-                                    }
-                                })
-                        .setNegativeButton("Cancel",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
-                alertDialog.show();
-            }
-        });
+//        holder.txtplat.setText(barang.getSeri()+" "+ barang.getPlat());
+//        holder.txtmerk.setText(barang.getMerk());
+//        holder.txtTglPajak.setText(tglPajak);
+//        holder.txtServiceAkhir.setText(tglService);
+//        holder.txtSisaPajak.setText(String.valueOf(diff)+" hari sebelum jatuh tempo bayar pajak");
+//
+//
+//        float from = barang.getKm_NextService()- barang.getKm_now();
+//        float from1 = 2500-from;
+//        float hasil = (from1/2500)*100;
+//        Log.e(TAG, "onBindViewHolder: "+hasil);
+//        ProgressBarAnimation anim = new ProgressBarAnimation(holder.progresKilometer, hasil-2, hasil);
+//        anim.setDuration(1000);
+//        anim.setRepeatMode(ValueAnimator.RESTART);
+//        anim.setRepeatCount(ValueAnimator.INFINITE);
+//        anim.setInterpolator(new LinearInterpolator());
+//
+//        holder.progresKilometer.setSecondaryProgress((int) hasil);
+//        holder.progresKilometer.startAnimation(anim);
+//        holder.txtKmNow.setText(barang.getKm_now()+"/"+ barang.getKm_NextService()+" KM");
+//
+//        holder.btnUpdateKm.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View arg0) {
+//
+//                // get prompts.xml view
+//                LayoutInflater li = LayoutInflater.from(mcontext);
+//                View promptsView = li.inflate(R.layout.updatekm, null);
+//
+//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                        mcontext);
+//
+//                // set prompts.xml to alertdialog builder
+//                alertDialogBuilder.setView(promptsView);
+//
+//                final EditText userInput = (EditText) promptsView
+//                        .findViewById(R.id.txtUpdatekm);
+//                userInput.setText(String.valueOf(barang.getKm_now()));
+//                // set dialog message
+//                alertDialogBuilder
+//                        .setCancelable(false)
+//                        .setPositiveButton("Update",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//
+//                                    barang.setKm_now(Integer.valueOf(userInput.getText().toString()));
+//
+//                                        activity.updateKM(barang);
+//                                    }
+//                                })
+//                        .setNegativeButton("Cancel",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int id) {
+//                                        dialog.cancel();
+//                                    }
+//                                });
+//
+//                // create alert dialog
+//                AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//                // show it
+//                alertDialog.show();
+//
+//            }
+//        });
+//
+//        holder.btnBayarPajak.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // get prompts.xml view
+//                LayoutInflater li = LayoutInflater.from(mcontext);
+//                View promptsView = li.inflate(R.layout.bayarpajak, null);
+//
+//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+//                        mcontext);
+//
+//                // set prompts.xml to alertdialog builder
+//                alertDialogBuilder.setView(promptsView);
+//
+//                final Button btnTglPajak = (Button) promptsView.findViewById(R.id.btn_pajak);
+//
+//                Calendar myCalendar;
+//                myCalendar = Calendar.getInstance();
+//
+//                btnTglPajak.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        new DatePickerDialog(mcontext, new DatePickerDialog.OnDateSetListener() {
+//                            @Override
+//                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//
+//                                myCalendar.set(Calendar.MONTH, month);
+//                                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+//                                myCalendar.set(Calendar.YEAR,year);
+//
+//                                String formatTanggal = "dd MMMM y";
+//                                SimpleDateFormat sdf = new SimpleDateFormat(formatTanggal);
+//                                btnTglPajak.setText(sdf.format(myCalendar.getTime()));
+//                            }
+//                        },
+//                                myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+//                    }
+//                });
+//
+//                alertDialogBuilder
+//                        .setCancelable(false)
+//                        .setPositiveButton("Update",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog,int id) {
+//
+//                                        myCalendar.add(Calendar.YEAR,1);
+//                                        barang.setTahun_pajak(myCalendar.getTimeInMillis());
+//
+//                                        activity.updateKM(barang);
+//                                    }
+//                                })
+//                        .setNegativeButton("Cancel",
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int id) {
+//                                        dialog.cancel();
+//                                    }
+//                                });
+//
+//                // create alert dialog
+//                AlertDialog alertDialog = alertDialogBuilder.create();
+//
+//                // show it
+//                alertDialog.show();
+//            }
+//        });
 
 
     }
@@ -226,32 +226,32 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        @Bind(R.id.txtPlat)
-        TextView txtplat;
-
-        @Bind(R.id.txtMerk)
-        TextView txtmerk;
-
-        @Bind(R.id.txtTglPajak)
-        TextView txtTglPajak;
-
-        @Bind(R.id.txtSisaPajak)
-        TextView txtSisaPajak;
-
-        @Bind(R.id.txtserviceakhir)
-        TextView txtServiceAkhir;
-
-        @Bind(R.id.txtKmnow)
-        TextView txtKmNow;
-
-        @Bind(R.id.progresKilometer)
-        ProgressBar progresKilometer;
-
-        @Bind(R.id.btnBayarPajak)
-        Button btnBayarPajak;
-
-        @Bind(R.id.btnUpdateKm)
-        Button btnUpdateKm;
+//        @Bind(R.id.txtPlat)
+//        TextView txtplat;
+//
+//        @Bind(R.id.txtMerk)
+//        TextView txtmerk;
+//
+//        @Bind(R.id.txtTglPajak)
+//        TextView txtTglPajak;
+//
+//        @Bind(R.id.txtSisaPajak)
+//        TextView txtSisaPajak;
+//
+//        @Bind(R.id.txtserviceakhir)
+//        TextView txtServiceAkhir;
+//
+//        @Bind(R.id.txtKmnow)
+//        TextView txtKmNow;
+//
+//        @Bind(R.id.progresKilometer)
+//        ProgressBar progresKilometer;
+//
+//        @Bind(R.id.btnBayarPajak)
+//        Button btnBayarPajak;
+//
+//        @Bind(R.id.btnUpdateKm)
+//        Button btnUpdateKm;
 
         public ViewHolder(View itemView) {
             super(itemView);
