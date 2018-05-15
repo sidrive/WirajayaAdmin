@@ -1,6 +1,5 @@
 package com.wirajaya.adventure.admin.ui.mainfragment;
 
-
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,22 +19,19 @@ import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.adapter.AdapterListBarang;
 import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
-import com.wirajaya.adventure.admin.data.remote.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.crashlytics.android.core.CrashlyticsCore.TAG;
-
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TendaFragment.OnFragmentInteractionListener} interface
+ * {@link CarierFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link TendaFragment#newInstance} factory method to
+ * Use the {@link CarierFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TendaFragment extends Fragment {
+public class CarierFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,7 +45,7 @@ public class TendaFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public TendaFragment() {
+    public CarierFragment() {
         // Required empty public constructor
     }
 
@@ -61,11 +55,11 @@ public class TendaFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TendaFragment.
+     * @return A new instance of fragment CarierFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TendaFragment newInstance(String param1, String param2) {
-        TendaFragment fragment = new TendaFragment();
+    public static CarierFragment newInstance(String param1, String param2) {
+        CarierFragment fragment = new CarierFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,15 +74,13 @@ public class TendaFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_tenda, container, false);
-        View view = inflater.inflate(R.layout.fragment_tenda, container, false);
+        View view = inflater.inflate(R.layout.fragment_carier, container, false);
         RecyclerView lsbarang = (RecyclerView) view.findViewById(R.id.listbarang);
 
         initRecycleView(lsbarang);
@@ -150,7 +142,7 @@ public class TendaFragment extends Fragment {
     public void getTenda(RecyclerView lsbarang){
         CategoryService categoryService = new CategoryService();
 
-        categoryService.getTendaDom().addValueEventListener(new ValueEventListener() {
+        categoryService.getCarrier().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Barang> listBarang = new ArrayList<Barang>();
@@ -177,5 +169,4 @@ public class TendaFragment extends Fragment {
 //        adapterStatusMotor.UpdateMotor(listBarang);
         lsbarang.setAdapter(adapterListBarang);
     }
-
 }

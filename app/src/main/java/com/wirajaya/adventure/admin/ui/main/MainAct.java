@@ -27,6 +27,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
@@ -37,7 +40,10 @@ import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
+import com.wirajaya.adventure.admin.ui.mainfragment.AccFragment;
+import com.wirajaya.adventure.admin.ui.mainfragment.CarierFragment;
 import com.wirajaya.adventure.admin.ui.mainfragment.TendaFragment;
+import com.wirajaya.adventure.admin.ui.mainfragment.TendaPramukaFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +60,10 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by ikun on 02/01/18.
  */
 
-public class MainAct extends BaseActivity implements TendaFragment.OnFragmentInteractionListener{
+public class MainAct extends BaseActivity implements CarierFragment.OnFragmentInteractionListener,
+        TendaFragment.OnFragmentInteractionListener,
+        TendaPramukaFragment.OnFragmentInteractionListener,
+        AccFragment.OnFragmentInteractionListener {
 
     private static final int RC_LOC_PERM = 1001;
 
@@ -98,6 +107,13 @@ public class MainAct extends BaseActivity implements TendaFragment.OnFragmentInt
 
         locationTask();
 
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
+                .setResizeAndRotateEnabledForNetwork(true)
+                .setDownsampleEnabled(true)
+                .build();
+        Fresco.initialize(this,config);
+
         String token = FirebaseInstanceId.getInstance().getToken();
         presenter.updateFCMToken(user.getUid(),token);
 
@@ -108,6 +124,8 @@ public class MainAct extends BaseActivity implements TendaFragment.OnFragmentInt
         initMotor();
         initUser();
         initPager();
+
+        initFragment(new TendaFragment());
     }
 
 
@@ -287,8 +305,23 @@ public class MainAct extends BaseActivity implements TendaFragment.OnFragmentInt
 
 
     @OnClick(R.id.ivTendaDoom)
-    public void showFragment(){
+    public void showTendaDoom(){
         initFragment(new TendaFragment());
+    }
+
+    @OnClick(R.id.ivCarrier)
+    public void showCarrier(){
+        initFragment(new CarierFragment());
+    }
+
+    @OnClick(R.id.ivAcc)
+    public void showAcc(){
+        initFragment(new AccFragment());
+    }
+
+    @OnClick(R.id.ivTendaPramuka)
+    public void showTendaPramuka(){
+        initFragment(new TendaPramukaFragment());
     }
 
     @Override

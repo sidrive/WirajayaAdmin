@@ -1,6 +1,9 @@
 package com.wirajaya.adventure.admin.data.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -10,13 +13,24 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.stfalcon.frescoimageviewer.ImageViewer;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.model.Barang;
+import com.wirajaya.adventure.admin.data.remote.CategoryService;
+import com.wirajaya.adventure.admin.ui.main.MainAct;
 import com.wirajaya.adventure.admin.ui.mainfragment.TendaFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,7 +44,9 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
     private List<Barang> mitem;
     private TendaFragment activity;
 
-    public AdapterListBarang(ArrayList<Barang> item, Context context, TendaFragment activity){
+    CategoryService categoryService = new CategoryService();
+
+    public AdapterListBarang(ArrayList<Barang> item, Context context/*, TendaFragment activity*/){
         this.mcontext = context;
         this.mitem = item;
         this.activity = activity;
@@ -49,11 +65,85 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Barang barang = getItem(position);
         Log.e(TAG, "onBindViewHolder: "+ barang);
+        if(barang.getKategoriBarang().equals("Accesories")){
+            holder.txtNamaBrg.setText(barang.getNamaBarang()+" "+barang.getMerkBarang()+" "+barang.getKeteranganBarang());
+        }else {
+            holder.txtNamaBrg.setText(barang.getKategoriBarang()+" "+barang.getNamaBarang()+" "+barang.getMerkBarang()+" "+barang.getKeteranganBarang());
+        }
 
-        holder.txtNamaBrg.setText("Doom "+barang.getNamaBarang()+" "+barang.getMerkBarang()+" "+barang.getKeteranganBarang());
         holder.txtHarga.setText("Rp. "+barang.getHargaBarang()+"/hari");
         holder.txtStok.setText(String.valueOf(barang.getStokBarang()));
         holder.txtTglUpdateBrg.setText("");
+
+        initProfilePhoto(barang,holder);
+
+        holder.btnUpdateStok.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                // get prompts.xml view
+                LayoutInflater li = LayoutInflater.from(mcontext);
+                View promptsView = li.inflate(R.layout.update_stok, null);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        mcontext);
+
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+
+                final EditText userInput = (EditText) promptsView
+                        .findViewById(R.id.txtUpdateStok);
+                userInput.setText(String.valueOf(barang.getStokBarang()));
+                // set dialog message
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("Update",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+
+                                    barang.setStokBarang(Integer.valueOf(userInput.getText().toString()));
+                                        showLoading(true);
+                                        updateStok(barang);
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+            }
+        });
+
+        holder.imgPhotoBrg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                if(barang.getPhoto_url() != null){
+                    if(!barang.getPhoto_url().equalsIgnoreCase("NOT")){
+                        String list = barang.getPhoto_url();
+
+                        new ImageViewer.Builder(mcontext, Collections.singletonList(list))
+                                .setStartPosition(1)
+                                .hideStatusBar(true)
+                                .allowZooming(true)
+                                .allowSwipeToDismiss(true)
+                                .setBackgroundColorRes(R.color.com_facebook_blue)
+                                .setContainerPadding(mcontext, R.dimen.activity_half_margin)
+                                .show();
+                    }
+                }
+
+            }
+        });
 
 
     }
@@ -80,6 +170,9 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
 
         @Bind(R.id.btnUpdateStok)
         Button btnUpdateStok;
+
+        @Bind(R.id.imgPhotoBrg)
+        ImageView imgPhotoBrg;
 
 
 
@@ -110,5 +203,73 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
     public void UpdateMotor(List<Barang> listarray) {
         mitem = listarray;
 //        notifyDataSetChanged();
+    }
+
+    public void updateStok(Barang barang){
+
+        categoryService.saveBarang(barang).addOnCompleteListener(task -> succesUpdateStok()).addOnFailureListener(e -> {
+            showLoading(false);
+            Toast.makeText(mcontext, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
+        });
+
+    }
+
+    public void succesUpdateStok() {
+        showLoading(false);
+        String title = "Barang disimpan";
+        String desc = "Kami sedang melakukan update data barang";
+        int icon = R.drawable.ic_alarm_on;
+        showAlertDialog(title, desc, icon);
+    }
+
+    void showLoading(boolean b) {
+    }
+
+    private void showAlertDialog(String title, String desc, int icon) {
+        final Intent intent = new Intent(mcontext, MainAct.class);
+        intent.putExtra("barang", "barang");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        new android.support.v7.app.AlertDialog.Builder(mcontext)
+                .setTitle(title)
+                .setMessage(desc)
+                .setCancelable(false)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // continue with delete
+                    dialog.dismiss();
+                    mcontext.startActivity(intent);
+
+                })
+                .setIcon(icon)
+                .show();
+    }
+
+    public void initProfilePhoto(Barang barang, ViewHolder holder){
+        if (barang.getPhoto_url() != null) {
+            if (!barang.getPhoto_url().equalsIgnoreCase("NOT")){
+                Glide.with(mcontext)
+                        .load(barang.getPhoto_url()).listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        Log.e("IMAGE_EXCEPTION", "Exception " + e.toString());
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        Log.d("smtime img's not loaded",  "n dis tex's not di");
+                        return false;
+                    }
+                });
+                        /*.placeholder(R.color.colorSoft)
+                        .dontAnimate()
+                        .into(imgAvatar);*/
+
+                Glide.with(mcontext)
+                        .load(barang.getPhoto_url())
+                        .placeholder(R.color.colorSoft)
+                        .dontAnimate()
+                        .into(holder.imgPhotoBrg);
+            }
+        }
     }
 }

@@ -43,4 +43,16 @@ public class CategoryService {
     public DatabaseReference getTendaDom(){
         return databaseRef.child("barangs").child("Tenda Doom");
     }
+
+    public DatabaseReference getCarrier(){
+        return databaseRef.child("barangs").child("Carrier");
+    }
+
+    public DatabaseReference getAcc(){
+        return databaseRef.child("barangs").child("Accesories");
+    }
+
+    public DatabaseReference getTendaPramuka(){
+        return databaseRef.child("barangs").child("Tenda Pramuka");
+    }
 }
