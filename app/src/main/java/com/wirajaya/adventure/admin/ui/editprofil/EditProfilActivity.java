@@ -206,6 +206,7 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
         intent.putExtra("register", register);
         BaseApplication.get(activity).createUserComponent(user);
         activity.startActivity(intent);
+
     }
 
     @Override
@@ -238,6 +239,8 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+//        showLoading(false);
 
         cal = Calendar.getInstance();
 
@@ -401,6 +404,8 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
             inputEmail.setEnabled(false);
             inputPhone.setEnabled(false);
         }
+
+        showLoading(false);
     }
 
     private void initGender(String i) {
@@ -950,5 +955,7 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
         user.setLatitude(latLng.latitude);
         user.setLongitude(latLng.longitude);
     }
+
+
 
 }

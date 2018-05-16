@@ -41,25 +41,25 @@ public class InputServicePresenter implements BasePresenter {
     }
 
     public void uploadAvatar(final Barang barang, final Service service, byte[] data, final Uri uri){
-        activity.showLoading(true);
-        StorageReference avatarPartnerRef = firebaseImageService.getServiceImageRefOriginal(barang.getUserid(), barang.getIdmotor(),service.getIdservice());
-
-        UploadTask uploadTask = avatarPartnerRef.putFile(uri);
-// Register observers to listen for when the download is done or if it fails
-
-        uploadTask.addOnFailureListener(exception -> {
-            // Handle unsuccessful uploads
-            System.out.print(exception);
-        }).addOnSuccessListener(taskSnapshot -> {
-            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-            Uri downloadUrl = taskSnapshot.getDownloadUrl();
-            activity.successUploadImage(downloadUrl.toString(), barang);
-
-        });
+//        activity.showLoading(true);
+////        StorageReference avatarPartnerRef = firebaseImageService.getServiceImageRefOriginal(barang.getUserid(), barang.getIdmotor(),service.getIdservice());
+//
+//        UploadTask uploadTask = avatarPartnerRef.putFile(uri);
+//// Register observers to listen for when the download is done or if it fails
+//
+//        uploadTask.addOnFailureListener(exception -> {
+//            // Handle unsuccessful uploads
+//            System.out.print(exception);
+//        }).addOnSuccessListener(taskSnapshot -> {
+//            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+//            Uri downloadUrl = taskSnapshot.getDownloadUrl();
+//            activity.successUploadImage(downloadUrl.toString(), barang);
+//
+//        });
     }
 
     public void updateMotor(Barang barang, Service service){
-        Log.e("InputMotor","idmotor "+ barang.getIdmotor());
+//        Log.e("InputMotor","idmotor "+ barang.getIdmotor());
         categoryService.saveBarang(barang).addOnCompleteListener(task -> activity.succesSaveMotor(service)).addOnFailureListener(e -> {
             activity.showLoading(false);
             Toast.makeText(activity, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();

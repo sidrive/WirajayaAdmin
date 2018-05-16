@@ -133,7 +133,7 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
         Log.e(TAG, "onCreate: "+service );
 
         myCalender = Calendar.getInstance();
-        txtMotor.setText(barang.getSeri().toString().toUpperCase()+" "+ barang.getPlat().toString().toUpperCase());
+//        txtMotor.setText(barang.getSeri().toString().toUpperCase()+" "+ barang.getPlat().toString().toUpperCase());
         charJenService = getResources().getStringArray(R.array.list_jenisservice);
         charKetService = getResources().getStringArray(R.array.list_ketservice);
 
@@ -326,38 +326,38 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
             Random rand = new Random();
             String oid = Integer.toString(rand.nextInt(99999));
 
-            service.setIdmotor(barang.getIdmotor().toString());
-            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
+//            service.setIdmotor(barang.getIdmotor().toString());
+//            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
             service.setJenisService(txtJenisService.getText().toString());
             service.setKeterangan(txtKetService.getText().toString()+" "+txtPart.getText().toString());
             service.setTglService(myCalender.getTimeInMillis());
             service.setKmservice(Integer.valueOf(txtKmService.getText().toString()));
 
-            barang.setKm_now(Integer.valueOf(txtKmService.getText().toString()));
-            barang.setTgl_service(myCalender.getTimeInMillis());
+//            barang.setKm_now(Integer.valueOf(txtKmService.getText().toString()));
+//            barang.setTgl_service(myCalender.getTimeInMillis());
 
             if(txtJenisService.getText().toString().equals("Service & Ganti Oli")){
-                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
+//                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
 
                 if (imgOriginal != null) {
                     presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
                     presenter.updateMotor(barang,service);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }if(txtJenisService.getText().toString().equals("Ganti Oli")){
-                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
+//                barang.setKm_NextService(Integer.valueOf(txtKmService.getText().toString())+2500);
 
                 if (imgOriginal != null) {
                     presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
                     presenter.updateMotor(barang,service);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }else{
@@ -415,8 +415,8 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
             Random rand = new Random();
             String oid = Integer.toString(rand.nextInt(99999));
 
-            service.setIdmotor(barang.getIdmotor().toString());
-            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
+//            service.setIdmotor(barang.getIdmotor().toString());
+//            service.setIdservice(barang.getIdmotor().toString()+String.valueOf(oid));
             service.setJenisService(txtJenisService.getText().toString());
             service.setKeterangan(txtKetService.getText().toString()+" "+txtPart.getText().toString());
             service.setTglService(myCalender.getTimeInMillis());
@@ -428,22 +428,22 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
 
                 if (imgOriginal != null) {
                     presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
                     presenter.updateMotor(barang,service);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }if(txtJenisService.getText().toString().equals("Ganti Oli")){
 
                 if (imgOriginal != null) {
                     presenter.uploadAvatar(barang,service, imgSmall, imgOriginal);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
 
                 } else {
                     presenter.updateMotor(barang,service);
-                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
+//                    Log.e(TAG, "validate: "+ barang.getKm_NextService());
                 }
 
             }else{

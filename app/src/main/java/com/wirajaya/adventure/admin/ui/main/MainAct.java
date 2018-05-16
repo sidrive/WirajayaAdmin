@@ -6,20 +6,31 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.base.BaseActivity;
@@ -30,6 +41,10 @@ import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.model.User;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
+import com.wirajaya.adventure.admin.ui.mainfragment.AccFragment;
+import com.wirajaya.adventure.admin.ui.mainfragment.CarierFragment;
+import com.wirajaya.adventure.admin.ui.mainfragment.TendaFragment;
+import com.wirajaya.adventure.admin.ui.mainfragment.TendaPramukaFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +61,10 @@ import pub.devrel.easypermissions.EasyPermissions;
  * Created by ikun on 02/01/18.
  */
 
-public class MainAct extends BaseActivity {
+public class MainAct extends BaseActivity implements CarierFragment.OnFragmentInteractionListener,
+        TendaFragment.OnFragmentInteractionListener,
+        TendaPramukaFragment.OnFragmentInteractionListener,
+        AccFragment.OnFragmentInteractionListener {
 
     private static final int RC_LOC_PERM = 1001;
 
@@ -62,6 +80,12 @@ public class MainAct extends BaseActivity {
     @Bind(R.id.listprofile)
     RecyclerView lsprofile;
 
+    @Bind(R.id.view_progress)
+    LinearLayout viewProgress;
+
+    @Bind(R.id.frameFragment)
+    FrameLayout frame;
+
 
     @Inject
     MainPresenter presenter;
@@ -71,6 +95,8 @@ public class MainAct extends BaseActivity {
 
     @Inject
     Barang barang;
+
+    TendaFragment tendaFragment = new TendaFragment();
 
     private AdapterStatusMotor adapterStatusMotor;
     private AdapterProfileUser adapterProfileUser;
@@ -85,6 +111,13 @@ public class MainAct extends BaseActivity {
 
         locationTask();
 
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
+                .setResizeAndRotateEnabledForNetwork(true)
+                .setDownsampleEnabled(true)
+                .build();
+        Fresco.initialize(this,config);
+
         String token = FirebaseInstanceId.getInstance().getToken();
         presenter.updateFCMToken(user.getUid(),token);
 
@@ -95,7 +128,11 @@ public class MainAct extends BaseActivity {
         initMotor();
         initUser();
         initPager();
+
+        initFragment(new TendaFragment());
     }
+
+
     @Override
     protected void setupActivityComponent() {
         BaseApplication.get(this).getUserComponent()
@@ -134,15 +171,12 @@ public class MainAct extends BaseActivity {
         }
     };
 
-    @OnClick(R.id.button2)
+    @OnClick(R.id.lnInputBarang)
     public void test(){
         InputBarangActivity.startWithUser(this, user);
     }
 
-    @OnClick(R.id.button3)
-    public void editProfile(){
-        EditProfilActivity.startWithUser(this, user,true);
-    }
+
 
     public void initPager(){
     }
@@ -228,7 +262,13 @@ public class MainAct extends BaseActivity {
         showAlertDialog(title, desc, icon);
     }
 
-    void showLoading(boolean b) {
+    public void showLoading(boolean b) {
+        if(b){
+            viewProgress.setVisibility(View.VISIBLE);
+        }else {
+            viewProgress.setVisibility(View.GONE);
+        }
+        Log.e("MainAct", "showLoading: "+b );
     }
 
     private void showAlertDialog(String title, String desc, int icon) {
@@ -260,5 +300,39 @@ public class MainAct extends BaseActivity {
             EasyPermissions.requestPermissions(this, getString(R.string.ijin_lokasi),
                     RC_LOC_PERM, perms);
         }
+    }
+
+    private void initFragment(Fragment classFragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameFragment, classFragment);
+        transaction.commit();
+
+    }
+
+
+
+    @OnClick(R.id.lnTendaDoom)
+    public void showTendaDoom(){
+        initFragment(new TendaFragment());
+    }
+
+    @OnClick(R.id.lnCarrier)
+    public void showCarrier(){
+        initFragment(new CarierFragment());
+    }
+
+    @OnClick(R.id.lnAcc)
+    public void showAcc(){
+        initFragment(new AccFragment());
+    }
+
+    @OnClick(R.id.lnTendaPramuka)
+    public void showTendaPramuka(){
+        initFragment(new TendaPramukaFragment());
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

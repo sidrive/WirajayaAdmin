@@ -1,8 +1,7 @@
-package com.wirajaya.adventure.admin.ui.editmotor;
+package com.wirajaya.adventure.admin.ui.editbarang;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -13,8 +12,6 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +36,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -53,7 +49,7 @@ import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 import pub.devrel.easypermissions.EasyPermissions.PermissionCallbacks;
 
-public class EditMotorActivity extends BaseActivity implements OnDialogUploadOptionClickListener, PermissionCallbacks {
+public class EditBarangActivity extends BaseActivity implements OnDialogUploadOptionClickListener, PermissionCallbacks {
 
     private static final String TAG = "DetailMotorActivity";
     public static final int REQUST_CODE_CAMERA = 1002;
@@ -61,47 +57,38 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     private static final int RC_CAMERA_PERM = 205;
     public static Uri mCapturedImageURI;
 
+    @Bind(R.id.viewPrrogress)
+    LinearLayout viewProgress;
+
     @Bind(R.id.txtKategori)
-    TextView txtMerk;
+    TextView txtkategori;
 
     @Bind(R.id.txtKeterangan)
-    TextView txtType;
+    TextView txtket;
 
     @Bind(R.id.txtSeri)
-    TextView txtSeri;
+    TextView txtseri;
 
-    @Bind(R.id.txt_kmNow)
-    EditText txtKmnow;
+    @Bind(R.id.imglogo)
+    ImageView imglogo;
 
     @Bind(R.id.imageView2)
     ImageView imgAvatar;
 
-    @Bind(R.id.chNo)
-    RadioButton chNo;
+    @Bind(R.id.txt_namaBrg)
+    TextView namaBrg;
 
-    @Bind(R.id.chYes)
-    RadioButton chYes;
+    @Bind(R.id.txt_merk)
+    TextView txtMerk;
 
-    @Bind(R.id.lnKmratano)
-    LinearLayout lnKmratano;
+    @Bind(R.id.txt_harga)
+    TextView txtHarga;
 
-    @Bind(R.id.lnKmratayes)
-    LinearLayout lnKmratayes;
-
-    @Bind(R.id.txt_kmratamtrno)
-    EditText kmratamtrno;
-
-    @Bind(R.id.txt_kmjarakkerja)
-    EditText kmjarakkerja;
-
-    @Bind(R.id.txt_kmratakerja)
-    EditText kmratakerja;
-
-    @Bind(R.id.viewPrrogress)
-    LinearLayout viewProgress;
+    @Bind(R.id.txt_stok)
+    TextView txtStok;
 
     @Inject
-    EditMotorPresenter presenter;
+    EditBarangPresenter presenter;
 
     @Inject
     Barang barang;
@@ -118,7 +105,7 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
         setContentView(R.layout.activity_input_barang);
         ButterKnife.bind(this);
 
-        initMotor();
+        initBarang();
 
         myCalendar = Calendar.getInstance();
 
@@ -149,32 +136,38 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     @Override
     protected void setupActivityComponent() {
         BaseApplication.get(this).getMotorComponent()
-                .plus(new EditMotorActivityModule(this))
+                .plus(new EditBarangActivityModule(this))
                 .inject(this);
 //        BaseApplication.get(this).createEditMotorComponent(this);
     }
 
 
-    public static void startWithMotor(Activity activity, final Barang barang) {
-        Intent intent = new Intent(activity, EditMotorActivity.class);
+    public static void startWithBarang(Activity activity, final Barang barang) {
+        Intent intent = new Intent(activity, EditBarangActivity.class);
 
         BaseApplication.get(activity).createMotorComponent(barang);
         activity.startActivity(intent);
     }
 
-    public void initMotor(){
-        if(barang.getMerk() != null){
-            txtMerk.setText(barang.getMerk().toString());
+    public void initBarang(){
+        if(barang.getKategoriBarang() != null){
+            txtkategori.setText(barang.getKategoriBarang().toString());
         }
-        if(barang.getType() != null){
-            txtType.setText(barang.getType().toString());
+        if(barang.getKeteranganBarang() != null){
+            txtket.setText(barang.getKeteranganBarang().toString());
         }
-        if(barang.getSeri() != null){
-            txtSeri.setText(barang.getSeri().toString());
+        if(barang.getNamaBarang() != null){
+            namaBrg.setText(barang.getNamaBarang().toString());
+        }
+        if(barang.getMerkBarang() != null){
+            txtMerk.setText(barang.getMerkBarang().toString());
+        }
+        if(String.valueOf(barang.getStokBarang()) != null){
+            txtStok.setText(String.valueOf(barang.getStokBarang()));
         }
 
-        if(String.valueOf(barang.getKm_now()) != null){
-            txtKmnow.setText(String.valueOf(barang.getKm_now()));
+        if(String.valueOf(barang.getHargaBarang()) != null){
+            txtHarga.setText(String.valueOf(barang.getHargaBarang()));
         }
         if(barang.getPhoto_url() != null){
             if (!barang.getPhoto_url().equals("NOT")) {
@@ -183,24 +176,6 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
                         .placeholder(R.color.colorSoft)
                         .dontAnimate()
                         .into(imgAvatar);
-            }
-        }
-        if(barang.getMotor_utama() != null){
-            if(!barang.getMotor_utama()){
-                chNo.setChecked(true);
-                lnKmratano.setVisibility(View.VISIBLE);
-                chYes.setEnabled(false);
-                if(barang.getKm_ratarata() != 0){
-                    kmratamtrno.setText(String.valueOf(barang.getKm_ratarata()));
-                }
-            }
-            if(barang.getMotor_utama()){
-                chYes.setChecked(true);
-                lnKmratayes.setVisibility(View.VISIBLE);
-                chNo.setEnabled(false);
-                if(barang.getKm_ratarata() != 0){
-                    kmjarakkerja.setText(String.valueOf(barang.getKm_ratarata()));
-                }
             }
         }
 
@@ -255,7 +230,7 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     }
 
     @OnClick(R.id.btn_simpan)
-    void simpanMotor(){
+    void simpanBarang(){
         validate();
     }
 
@@ -320,10 +295,10 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
         if (url != null) {
             barang.setPhoto_url(url);
         }
-        presenter.updateMotor(barang);
+        presenter.updateBarang(barang);
     }
 
-    public void successUpdateMotor(Barang barang) {
+    public void successUpdateBarang(Barang barang) {
         showLoading(false);
             Toast.makeText(this, "Data Tersimpan", Toast.LENGTH_SHORT).show();
             BaseApplication.get(this).createMotorComponent(barang);
@@ -395,12 +370,24 @@ public class EditMotorActivity extends BaseActivity implements OnDialogUploadOpt
     }
 
     public void validate(){
-        String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
 
+        if(namaBrg.getText() != null){
+            barang.setNamaBarang(namaBrg.getText().toString());
+        }
+        if(txtMerk.getText() != null){
+            barang.setMerkBarang(txtMerk.getText().toString());
+        }
+        if(txtStok.getText() != null){
+            barang.setStokBarang(Integer.valueOf(txtStok.getText().toString()));
+        }
+        if(txtHarga.getText() != null){
+            barang.setHargaBarang(Integer.valueOf(txtHarga.getText().toString()));
+        }
+        barang.setUpdateTerakhir(System.currentTimeMillis());
         if (imgOriginal != null) {
             presenter.uploadAvatar(barang, imgSmall, imgOriginal);
         } else {
-            presenter.updateMotor(barang);
+            presenter.updateBarang(barang);
         }
 
         showLoading(true);

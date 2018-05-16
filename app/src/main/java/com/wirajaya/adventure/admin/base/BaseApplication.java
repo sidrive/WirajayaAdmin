@@ -25,7 +25,7 @@ import com.wirajaya.adventure.admin.data.remote.motor.MotorModule;
 import com.wirajaya.adventure.admin.data.remote.network.NetworkModule;
 import com.wirajaya.adventure.admin.data.remote.user.UserComponent;
 import com.wirajaya.adventure.admin.data.remote.user.UserModule;
-import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivity;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivity;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangActivity;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
 import io.fabric.sdk.android.Fabric;
@@ -114,7 +114,7 @@ public class BaseApplication extends MultiDexApplication {
         return inputmotorComponent;
     }
 
-    public EditMotorComponent createEditMotorComponent(EditMotorActivity activity){
+    public EditMotorComponent createEditMotorComponent(EditBarangActivity activity){
         editMotorComponent = userComponent.plus(new EditMotorModule(activity));
         return editMotorComponent;
     }

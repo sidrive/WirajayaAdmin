@@ -7,8 +7,8 @@ import com.wirajaya.adventure.admin.data.inputMotor.InputmotorComponent;
 import com.wirajaya.adventure.admin.data.inputMotor.InputmotorModule;
 import com.wirajaya.adventure.admin.data.main.MainComponent;
 import com.wirajaya.adventure.admin.data.main.MainModule;
-import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivityComponent;
-import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivityModule;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivityComponent;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivityModule;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangComponent;
 import com.wirajaya.adventure.admin.ui.inputBarang.InputBarangModule;
 import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivityComponent;
@@ -34,7 +34,7 @@ public interface UserComponent {
 //
     MainActivityComponent plus(MainActivityModule activityModule);
     InputBarangComponent plus(InputBarangModule activityModule);
-    EditMotorActivityComponent plus(EditMotorActivityModule activityModule);
+    EditBarangActivityComponent plus(EditBarangActivityModule activityModule);
 //
 //    InputmotorComponent plus(InputmotorModule mainModule);
 //

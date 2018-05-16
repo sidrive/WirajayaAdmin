@@ -11,6 +11,16 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:background="@drawable/bg_view_mtr">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imgPhotoBrg"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logowirajaya"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,11 +31,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/txtPlat"
+                android:id="@+id/txtNamaBrg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Honda 800 AB123CD"
+                android:text="Tenda Doom Consina Kap 4"
                 android:textStyle="bold"
                 android:textSize="8pt"/>
         </LinearLayout>
@@ -42,14 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:text="Merk Motor " />
+                android:text="Harga Sewa" />
 
             <TextView
-                android:id="@+id/txtMerk"
+                android:id="@+id/txtHarga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Honda"
+                android:text="Rp. 25000/hari"
                 android:textAlignment="textEnd"/>
         </LinearLayout>
 
@@ -68,33 +78,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tgl Pajak" />
+                android:text="Stok" />
 
             <TextView
-                android:id="@+id/txtTglPajak"
+                android:id="@+id/txtStok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="0000 km"
+                android:text="0"
                 android:textAlignment="textEnd"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="5dp">
 
-            <TextView
-                android:id="@+id/txtSisaPajak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="0000 km"
-                android:textAlignment="textEnd"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,10 +104,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Service Terakhir" />
+                android:text="Update Terakhir" />
 
             <TextView
-                android:id="@+id/txtserviceakhir"
+                android:id="@+id/txtTglUpdateBrg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -122,69 +117,20 @@
 
         </LinearLayout>
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:id="@+id/txtKm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="22dp"
-                android:text="Perkiraan KM Motor Tercapai saat ini :"
-                android:layout_marginBottom="15dp"/>
-
-            <ProgressBar
-                android:id="@+id/progresKilometer"
-                style="@style/MyProgressBarTwo"
-                android:theme="@style/MyProgressBarTwo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="10dp"/>
-
-            <TextView
-                android:id="@+id/txtKmnow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="26dp"
-                android:text="0/0 Km" />
-
-
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnUpdateKm"
+                android:id="@+id/btnUpdateStok"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:text="Update Kilometer"
+                android:text="Update Stok"
                 android:textSize="4pt"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="right">
-                <Button
-                    android:id="@+id/btnBayarPajak"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:text="Bayar Pajak"
-                    android:textSize="4pt"
-                    android:layout_marginRight="10dp"/>
-            </LinearLayout>
+
 
         </LinearLayout>
 
