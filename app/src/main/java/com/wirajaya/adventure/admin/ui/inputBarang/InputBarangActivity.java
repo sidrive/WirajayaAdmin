@@ -45,6 +45,7 @@ import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -390,13 +391,30 @@ public class InputBarangActivity extends BaseActivity implements DialogUploadOpt
             focusView.requestFocus();
         }else {
 
-            barang.setIdbarang(String.valueOf(txtkategori.getText()+namaBrg.getText().toString()));
+            Random rand = new Random();
+            int id = rand.nextInt(999);
+            String id1 = "";
+            if (txtkategori.getText().equals("Tenda Doom")){
+                id1 = "DM";
+            }
+            if (txtkategori.getText().equals("Tenda Pramuka")){
+                id1 = "PM";
+            }
+            if (txtkategori.getText().equals("Carrier")){
+                id1 = "CR";
+            }
+            if (txtkategori.getText().equals("Accesories")){
+                id1 = "AC";
+            }
+
+            barang.setIdbarang("WR"+id1+id);
             barang.setKategoriBarang(String.valueOf(txtkategori.getText()));
             barang.setKeteranganBarang(String.valueOf(txtket.getText()));
             barang.setNamaBarang(String.valueOf(namaBrg.getText()));
             barang.setMerkBarang(String.valueOf(txtMerk.getText()));
             barang.setStokBarang(Integer.valueOf(txtStok.getText().toString()));
             barang.setHargaBarang(Integer.valueOf(txtHarga.getText().toString()));
+            barang.setUpdateTerakhir(System.currentTimeMillis());
 
 
             if (imgOriginal != null) {

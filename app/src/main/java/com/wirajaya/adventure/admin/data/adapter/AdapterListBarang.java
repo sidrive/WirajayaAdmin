@@ -78,7 +78,7 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
         if(barang.getUpdateTerakhir() == null){
             tglUpdate = null;
         }else{
-            tglUpdate = DateFormater.getDate(barang.getUpdateTerakhir(),"d MMMM y");
+            tglUpdate = DateFormater.getDate(barang.getUpdateTerakhir(),"d MMMM y H:mm");
         }
 
 
@@ -114,6 +114,7 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
                                     public void onClick(DialogInterface dialog,int id) {
 
                                     barang.setStokBarang(Integer.valueOf(userInput.getText().toString()));
+                                    barang.setUpdateTerakhir(System.currentTimeMillis());
                                         showLoading(true);
                                         updateStok(barang);
 
