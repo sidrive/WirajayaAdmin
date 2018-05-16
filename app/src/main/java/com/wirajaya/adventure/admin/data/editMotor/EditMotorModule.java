@@ -1,20 +1,20 @@
 package com.wirajaya.adventure.admin.data.editMotor;
 
 import com.wirajaya.adventure.admin.base.annotation.MainScope;
-import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivity;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivity;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class EditMotorModule {
-    EditMotorActivity activity;
+    EditBarangActivity activity;
 
-    public EditMotorModule(EditMotorActivity activity){
+    public EditMotorModule(EditBarangActivity activity){
         this.activity = activity;
     }
 
     @Provides
     @MainScope
-    EditMotorActivity provideEditMotor(){return activity;}
+    EditBarangActivity provideEditMotor(){return activity;}
 }

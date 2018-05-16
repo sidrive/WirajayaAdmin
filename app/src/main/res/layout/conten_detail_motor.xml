@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.editmotor.EditMotorActivity"
+    tools:context=".ui.editbarang.EditBarangActivity"
     tools:showIn="@layout/activity_input_barang"
     android:orientation="vertical">
     <FrameLayout

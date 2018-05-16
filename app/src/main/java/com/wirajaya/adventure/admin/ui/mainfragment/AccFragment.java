@@ -19,6 +19,7 @@ import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.adapter.AdapterListBarang;
 import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
+import com.wirajaya.adventure.admin.ui.main.MainAct;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +165,7 @@ public class AccFragment extends Fragment {
     }
 
     public void initListTendaDoom(List<Barang> listBarang, RecyclerView lsbarang){
-        adapterListBarang = new AdapterListBarang((ArrayList<Barang>) listBarang,getContext());
+        adapterListBarang = new AdapterListBarang((ArrayList<Barang>) listBarang,getContext(), (MainAct) getActivity());
 //        adapterStatusMotor.UpdateMotor(listBarang);
         lsbarang.setAdapter(adapterListBarang);
     }

@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.remote.model.User;
+import com.wirajaya.adventure.admin.ui.editprofil.EditProfilActivity;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
 
 import java.util.ArrayList;
@@ -49,7 +51,7 @@ public class AdapterProfileUser extends Adapter<AdapterProfileUser.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = getItem(position);
-        Log.e(TAG, "onBindViewHolder: "+user.getNomor_sim());
+        Log.e(TAG, "onBindViewHolder: "+position);
 
         holder.txtphone.setText(user.getPhone());
         holder.txtemail.setText(user.getEmail());
@@ -86,6 +88,9 @@ public class AdapterProfileUser extends Adapter<AdapterProfileUser.ViewHolder> {
 
         @Override
         public void onClick(View view) {
+            User user = getItem(this.getAdapterPosition());
+            activity.showLoading(true);
+            EditProfilActivity.startWithUser(activity, user,true);
 
         }
     }

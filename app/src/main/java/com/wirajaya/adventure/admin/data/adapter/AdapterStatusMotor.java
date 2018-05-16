@@ -1,11 +1,7 @@
 package com.wirajaya.adventure.admin.data.adapter;
 
-import android.animation.ValueAnimator;
-import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.util.Log;
@@ -13,26 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.model.Barang;
-import com.wirajaya.adventure.admin.ui.editmotor.EditMotorActivity;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivity;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
 import com.wirajaya.adventure.admin.utils.DateFormater;
-import com.wirajaya.adventure.admin.utils.ProgressBarAnimation;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import static com.facebook.GraphRequest.TAG;
@@ -70,18 +56,18 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
         Long tglserv;
 
 
-        if(barang.getTgl_service() == null){
-            tglserv = System.currentTimeMillis();
-        }
-        else {
-            tglserv = barang.getTgl_service();
-        }
+////        if(barang.getTgl_service() == null){
+//            tglserv = System.currentTimeMillis();
+//        }
+//        else {
+//            tglserv = barang.getTgl_service();
+//        }
 
-        String tglService = DateFormater.getDate(tglserv,"d MMMM y");
-        String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
-
-        Long sisaPajak = barang.getTahun_pajak() - System.currentTimeMillis();
-        int diff = (int) Math.floor(sisaPajak/1000/60/60/24);
+//        String tglService = DateFormater.getDate(tglserv,"d MMMM y");
+//        String tglPajak = DateFormater.getDate(barang.getTahun_pajak(),"d MMMM");
+//
+//        Long sisaPajak = barang.getTahun_pajak() - System.currentTimeMillis();
+//        int diff = (int) Math.floor(sisaPajak/1000/60/60/24);
 
 //        holder.txtplat.setText(barang.getSeri()+" "+ barang.getPlat());
 //        holder.txtmerk.setText(barang.getMerk());
@@ -264,7 +250,7 @@ public class AdapterStatusMotor extends Adapter<AdapterStatusMotor.ViewHolder> {
         public void onClick(View view) {
            Barang barang = getItem(this.getAdapterPosition());
             Log.e(TAG, "onClick: "+ barang);
-            EditMotorActivity.startWithMotor(activity, barang);
+            EditBarangActivity.startWithBarang(activity, barang);
         }
     }
 

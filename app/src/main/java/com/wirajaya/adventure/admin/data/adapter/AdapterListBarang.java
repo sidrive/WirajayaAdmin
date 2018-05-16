@@ -26,8 +26,10 @@ import com.stfalcon.frescoimageviewer.ImageViewer;
 import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
+import com.wirajaya.adventure.admin.ui.editbarang.EditBarangActivity;
 import com.wirajaya.adventure.admin.ui.main.MainAct;
 import com.wirajaya.adventure.admin.ui.mainfragment.TendaFragment;
+import com.wirajaya.adventure.admin.utils.DateFormater;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,11 +44,11 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
 
     private Context mcontext;
     private List<Barang> mitem;
-    private TendaFragment activity;
+    private MainAct activity;
 
     CategoryService categoryService = new CategoryService();
 
-    public AdapterListBarang(ArrayList<Barang> item, Context context/*, TendaFragment activity*/){
+    public AdapterListBarang(ArrayList<Barang> item, Context context, MainAct activity){
         this.mcontext = context;
         this.mitem = item;
         this.activity = activity;
@@ -71,9 +73,18 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
             holder.txtNamaBrg.setText(barang.getKategoriBarang()+" "+barang.getNamaBarang()+" "+barang.getMerkBarang()+" "+barang.getKeteranganBarang());
         }
 
+        String tglUpdate;
+
+        if(barang.getUpdateTerakhir() == null){
+            tglUpdate = null;
+        }else{
+            tglUpdate = DateFormater.getDate(barang.getUpdateTerakhir(),"d MMMM y");
+        }
+
+
         holder.txtHarga.setText("Rp. "+barang.getHargaBarang()+"/hari");
         holder.txtStok.setText(String.valueOf(barang.getStokBarang()));
-        holder.txtTglUpdateBrg.setText("");
+        holder.txtTglUpdateBrg.setText(tglUpdate);
 
         initProfilePhoto(barang,holder);
 
@@ -186,8 +197,8 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
         @Override
         public void onClick(View view) {
             Barang barang = getItem(this.getAdapterPosition());
-            Log.e(TAG, "onClick: "+ barang);
-//            EditMotorActivity.startWithMotor(activity, barang);
+            Log.e(TAG, "onClick: "+ activity);
+            EditBarangActivity.startWithBarang(activity, barang);
         }
     }
 

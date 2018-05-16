@@ -88,7 +88,52 @@
                 </LinearLayout>
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_gravity="right"
+                android:background="@color/colorBlack"
+                android:layout_marginHorizontal="5dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/mdtp_white"
+                        android:textAlignment="center"
+                        android:text="Selamat Datang di \n Wirajaya Adventure App"/>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_gravity="right"
+                    android:id="@+id/lnInputBarang">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_add"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Input Barang"
+                        android:textColor="@color/mdtp_white"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -119,77 +164,109 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:gravity="bottom"
-        android:orientation="vertical"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/colorOrange"
         android:id="@+id/lnbutton">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginBottom="25dp">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:id="@+id/lnTendaDoom">
 
             <ImageView
                 android:id="@+id/ivTendaDoom"
-                android:layout_width="0dp"
+                android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_launcher_tenda"/>
+                android:src="@drawable/ic_logo_tenda"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tenda Doom"
+                android:textColor="@color/mdtp_white"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:id="@+id/lnTendaPramuka">
+
             <ImageView
                 android:id="@+id/ivTendaPramuka"
-                android:layout_width="0dp"
+                android:layout_width="42dp"
                 android:layout_height="42dp"
                 android:layout_weight="1"
-                android:src="@mipmap/ic_launcher_tenda"/>
-            <ImageView
-                android:id="@+id/ivCarrier"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_weight="1"
-                android:src="@mipmap/ic_launcher_tenda"/>
-            <ImageView
-                android:id="@+id/ivAcc"
-                android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_weight="1"
-                android:src="@mipmap/ic_launcher_tenda"/>
-
+                android:src="@drawable/ic_logo_tendapramuka"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mdtp_white"
+                android:text="Tenda Pramuka"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="5dp"
-            android:visibility="visible">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:id="@+id/lnCarrier">
 
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ivCarrier"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
-                android:layout_marginRight="5dp"
-                android:text="Input Barang"
-                android:drawableEnd="@mipmap/ic_launcher_tenda"
-                android:background="@drawable/bg_radius_white_selector"/>
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="10dp"
+                android:src="@mipmap/ic_launcher_user"/>
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/mdtp_white"
+                android:text="Carrier"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:id="@+id/lnAcc">
+            <ImageView
+                android:id="@+id/ivAcc"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_weight="1"
-                android:text="Profile"
-                android:drawableEnd="@mipmap/ic_launcher_user"
-                android:background="@drawable/bg_radius_white_selector"/>
+                android:src="@drawable/ic_logo_acc"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accesories"
+                android:textColor="@color/mdtp_white"/>
+
 
         </LinearLayout>
 
+
+
+        
+
     </LinearLayout>
+
+    <include layout="@layout/view_progress"/>
 
 </android.support.design.widget.CoordinatorLayout>

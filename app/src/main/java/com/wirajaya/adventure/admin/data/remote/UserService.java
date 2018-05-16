@@ -49,8 +49,8 @@ public class UserService {
 
     }
 
-    public Task<Void> updateMotor(Barang barang) {
-        return databaseRef.child("motors").child(barang.getUserid()).child(barang.getIdmotor()).setValue(barang);
+    public Task<Void> updateBarang(Barang barang) {
+        return databaseRef.child("barangs").child(barang.getKategoriBarang()).child(barang.getIdbarang()).setValue(barang);
     }
 
     //users

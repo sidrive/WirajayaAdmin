@@ -19,9 +19,12 @@ import com.wirajaya.adventure.admin.R;
 import com.wirajaya.adventure.admin.data.adapter.AdapterListBarang;
 import com.wirajaya.adventure.admin.data.model.Barang;
 import com.wirajaya.adventure.admin.data.remote.CategoryService;
+import com.wirajaya.adventure.admin.ui.main.MainAct;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static io.fabric.sdk.android.Fabric.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -152,6 +155,8 @@ public class TendaPramukaFragment extends Fragment {
 //                    Log.e("MainPresenter", "onDataChange: " + dataSnapshot.getChildren());
                     listBarang.add(barang);
                     Log.e("MainPresenter", "onDataChange: " + listBarang);
+
+
                 }
 
                 initListTendaDoom(listBarang,lsbarang);
@@ -165,7 +170,7 @@ public class TendaPramukaFragment extends Fragment {
     }
 
     public void initListTendaDoom(List<Barang> listBarang, RecyclerView lsbarang){
-        adapterListBarang = new AdapterListBarang((ArrayList<Barang>) listBarang,getContext());
+        adapterListBarang = new AdapterListBarang((ArrayList<Barang>) listBarang,getContext(), (MainAct) getActivity());
 //        adapterStatusMotor.UpdateMotor(listBarang);
         lsbarang.setAdapter(adapterListBarang);
     }

@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -78,6 +79,9 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
 
     @Bind(R.id.listprofile)
     RecyclerView lsprofile;
+
+    @Bind(R.id.view_progress)
+    LinearLayout viewProgress;
 
     @Bind(R.id.frameFragment)
     FrameLayout frame;
@@ -167,15 +171,12 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
         }
     };
 
-    @OnClick(R.id.button2)
+    @OnClick(R.id.lnInputBarang)
     public void test(){
         InputBarangActivity.startWithUser(this, user);
     }
 
-    @OnClick(R.id.button3)
-    public void editProfile(){
-        EditProfilActivity.startWithUser(this, user,true);
-    }
+
 
     public void initPager(){
     }
@@ -261,7 +262,13 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
         showAlertDialog(title, desc, icon);
     }
 
-    void showLoading(boolean b) {
+    public void showLoading(boolean b) {
+        if(b){
+            viewProgress.setVisibility(View.VISIBLE);
+        }else {
+            viewProgress.setVisibility(View.GONE);
+        }
+        Log.e("MainAct", "showLoading: "+b );
     }
 
     private void showAlertDialog(String title, String desc, int icon) {
@@ -304,22 +311,22 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
 
 
 
-    @OnClick(R.id.ivTendaDoom)
+    @OnClick(R.id.lnTendaDoom)
     public void showTendaDoom(){
         initFragment(new TendaFragment());
     }
 
-    @OnClick(R.id.ivCarrier)
+    @OnClick(R.id.lnCarrier)
     public void showCarrier(){
         initFragment(new CarierFragment());
     }
 
-    @OnClick(R.id.ivAcc)
+    @OnClick(R.id.lnAcc)
     public void showAcc(){
         initFragment(new AccFragment());
     }
 
-    @OnClick(R.id.ivTendaPramuka)
+    @OnClick(R.id.lnTendaPramuka)
     public void showTendaPramuka(){
         initFragment(new TendaPramukaFragment());
     }

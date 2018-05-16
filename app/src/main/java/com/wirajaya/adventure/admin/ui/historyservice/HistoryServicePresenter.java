@@ -41,7 +41,7 @@ public class HistoryServicePresenter implements BasePresenter {
     }
 
     public void getService(Barang barang){
-        userService.getService(barang.getIdmotor()).addValueEventListener(new ValueEventListener() {
+        userService.getService(barang.getIdbarang()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Service> listService = new ArrayList<Service>();
