@@ -56,7 +56,6 @@ public class AdapterProfileUser extends Adapter<AdapterProfileUser.ViewHolder> {
         holder.txtphone.setText(user.getPhone());
         holder.txtemail.setText(user.getEmail());
         holder.txtnosim.setText(user.getNomor_sim());
-        holder.txtjmlmotor.setText(String.valueOf(user.getTotalMotor()));
 
     }
 
@@ -75,9 +74,6 @@ public class AdapterProfileUser extends Adapter<AdapterProfileUser.ViewHolder> {
 
         @Bind(R.id.txtnosim)
         TextView txtnosim;
-
-        @Bind(R.id.txtjmlmotor)
-        TextView txtjmlmotor;
 
         public ViewHolder(View itemView) {
             super(itemView);

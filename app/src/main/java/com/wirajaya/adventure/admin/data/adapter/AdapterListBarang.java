@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,8 +116,8 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
 
                                     barang.setStokBarang(Integer.valueOf(userInput.getText().toString()));
                                     barang.setUpdateTerakhir(System.currentTimeMillis());
-                                        showLoading(true);
-                                        updateStok(barang);
+                                        showLoading(true,holder.viewProgress);
+                                        updateStok(barang,holder);
 
                                     }
                                 })
@@ -186,6 +187,9 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
         @Bind(R.id.imgPhotoBrg)
         ImageView imgPhotoBrg;
 
+        @Bind(R.id.view_progress)
+        LinearLayout viewProgress;
+
 
 
         public ViewHolder(View itemView) {
@@ -217,25 +221,24 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
 //        notifyDataSetChanged();
     }
 
-    public void updateStok(Barang barang){
+    public void updateStok(Barang barang, ViewHolder holder){
 
-        categoryService.saveBarang(barang).addOnCompleteListener(task -> succesUpdateStok()).addOnFailureListener(e -> {
-            showLoading(false);
+        categoryService.saveBarang(barang).addOnCompleteListener(task -> succesUpdateStok(holder)).addOnFailureListener(e -> {
+            showLoading(false,holder.viewProgress);
             Toast.makeText(mcontext, "Gagal menyimpan barang", Toast.LENGTH_SHORT).show();
         });
 
     }
 
-    public void succesUpdateStok() {
-        showLoading(false);
+    public void succesUpdateStok(ViewHolder holder) {
+        showLoading(false,holder.viewProgress);
         String title = "Barang disimpan";
         String desc = "Kami sedang melakukan update data barang";
         int icon = R.drawable.ic_alarm_on;
         showAlertDialog(title, desc, icon);
     }
 
-    void showLoading(boolean b) {
-    }
+
 
     private void showAlertDialog(String title, String desc, int icon) {
         final Intent intent = new Intent(mcontext, MainAct.class);
@@ -283,5 +286,14 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
                         .into(holder.imgPhotoBrg);
             }
         }
+    }
+
+    public void showLoading(boolean b, LinearLayout viewProgress) {
+        if(b){
+            viewProgress.setVisibility(View.VISIBLE);
+        }else {
+            viewProgress.setVisibility(View.GONE);
+        }
+        Log.e("MainAct", "showLoading: "+b );
     }
 }

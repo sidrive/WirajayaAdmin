@@ -27,18 +27,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/cast_libraries_material_featurehighlight_center_horizontal_offset"
                 android:background="@drawable/bg_shadow_line"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_person"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/ivProfile"/>
 
                 <TextView
                     android:id="@+id/txtnama_user"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:textColor="@color/mdtp_white"
                     android:gravity="center"
                     android:text="TextView"
                     android:textSize="9pt"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+
 
             </LinearLayout>
 
@@ -49,20 +57,13 @@
                 android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:id="@+id/img_avatar"
-                    android:layout_width="160dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
                     android:src="@color/colorSoft"
                     app:civ_border_width="2dp"
-                    app:civ_border_color="@color/colorGold"
-                    app:civ_border_overlay="true"
-                    android:shadowColor="@color/colorDark"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="5"/>
+                    app:civ_border_color="@color/colorRed"
+                    app:civ_border_overlay="true"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,7 +74,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:orientation="horizontal">
 

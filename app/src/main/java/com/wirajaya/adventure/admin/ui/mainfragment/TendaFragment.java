@@ -141,9 +141,11 @@ public class TendaFragment extends Fragment {
     public void initRecycleView(RecyclerView lsbarang) {
 
         lsbarang.setHasFixedSize(true);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         lsbarang.addItemDecoration(
                 new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         lsbarang.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        lsbarang.setLayoutManager(layoutManager);
         lsbarang.setNestedScrollingEnabled(false);
 
     }

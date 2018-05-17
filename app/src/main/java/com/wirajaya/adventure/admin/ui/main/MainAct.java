@@ -111,6 +111,8 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
 
         locationTask();
 
+        showLoading(false);
+
         ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
                 .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
                 .setResizeAndRotateEnabledForNetwork(true)
@@ -172,8 +174,13 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
     };
 
     @OnClick(R.id.lnInputBarang)
-    public void test(){
+    public void inputBarang(){
         InputBarangActivity.startWithUser(this, user);
+    }
+
+    @OnClick(R.id.ivProfile)
+    public void showProfile(){
+        EditProfilActivity.startWithUser(this,user,true);
     }
 
 
