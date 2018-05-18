@@ -264,7 +264,7 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
     public void succesSaveMotor() {
         showLoading(false);
         String title = "Barang disimpan";
-        String desc = "Kami sedang melakukan update data barang";
+        String desc = "Update data barang Berhasil";
         int icon = R.drawable.ic_alarm_on;
         showAlertDialog(title, desc, icon);
     }

@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:341743298642:android:5da05b3c6f7b15cc",
-        "android_client_info": {
-          "package_name": "com.adventure.wirajaya.wirajayaadventure_admin"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "341743298642-jbqgq79c51cgacfuimqi29b7jetktptc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.adventure.wirajaya.wirajayaadventure_admin",
-            "certificate_hash": "bb79d4008f1c926330d1bc1cfe9f09b6dcca68aa"
-          }
-        },
-        {
-          "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCGGzg_HjdHI01j_ALAN7ihgaHSu7h7UBE"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "341743298642-dvba8nvkvesup951vmjid3rnsopcu2o0.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:341743298642:android:99f7d97c7e1410a2",
         "android_client_info": {
           "package_name": "com.wirajaya.adventure.admin"
