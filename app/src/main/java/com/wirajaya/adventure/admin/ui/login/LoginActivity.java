@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ import com.wirajaya.adventure.admin.ui.main.MainAct;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,8 +38,11 @@ public class LoginActivity extends BaseActivity {
     private static final int RC_LOC_PERM = 1001;
 
     @Nullable
-    @Bind(R.id.view_progress)
+    @BindView(R.id.view_progress)
     LinearLayout viewProgress;
+    
+    @BindView(R.id.btn_login_with_google)
+    Button btnlogin;
 
     @Inject
     LoginPresenter presenter;
@@ -53,6 +58,9 @@ public class LoginActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         locationTask();
+        Log.e("login", "onCreate: cecek" );
+
+
 
     }
 
@@ -77,9 +85,12 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn_login_with_google)
     public void loginwithgoogle(){
+//        Log.e("login", "loginwithgoogle: cecek" );
         Intent intent = presenter.loginWithGoogle();
         startActivityForResult(intent, REQUEST_SIGN_GOOGLE);
     }
+
+
 
     public void showLoginFail(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();

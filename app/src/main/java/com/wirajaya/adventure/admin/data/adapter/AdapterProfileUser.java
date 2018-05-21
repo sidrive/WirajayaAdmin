@@ -23,7 +23,7 @@ import com.wirajaya.adventure.admin.ui.main.MainAct;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.facebook.GraphRequest.TAG;
@@ -66,13 +66,13 @@ public class AdapterProfileUser extends Adapter<AdapterProfileUser.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        @Bind(R.id.txtphone)
+        @BindView(R.id.txtphone)
         TextView txtphone;
 
-        @Bind(R.id.txtemail)
+        @BindView(R.id.txtemail)
         TextView txtemail;
 
-        @Bind(R.id.txtnosim)
+        @BindView(R.id.txtnosim)
         TextView txtnosim;
 
         public ViewHolder(View itemView) {

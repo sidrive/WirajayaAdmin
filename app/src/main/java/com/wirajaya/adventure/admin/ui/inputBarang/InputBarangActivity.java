@@ -49,7 +49,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -73,34 +73,34 @@ public class InputBarangActivity extends BaseActivity implements DialogUploadOpt
     @BindString(R.string.error_field_required)
     String strErrRequired;
 
-    @Bind(R.id.viewPrrogress)
+    @BindView(R.id.viewPrrogress)
     LinearLayout viewProgress;
 
-    @Bind(R.id.txtKategori)
+    @BindView(R.id.txtKategori)
     TextView txtkategori;
 
-    @Bind(R.id.txtKeterangan)
+    @BindView(R.id.txtKeterangan)
     TextView txtket;
 
-    @Bind(R.id.txtSeri)
+    @BindView(R.id.txtSeri)
     TextView txtseri;
 
-    @Bind(R.id.imglogo)
+    @BindView(R.id.imglogo)
     ImageView imglogo;
 
-    @Bind(R.id.imageView2)
+    @BindView(R.id.imageView2)
     ImageView imgAvatar;
 
-    @Bind(R.id.txt_namaBrg)
+    @BindView(R.id.txt_namaBrg)
     TextView namaBrg;
 
-    @Bind(R.id.txt_merk)
+    @BindView(R.id.txt_merk)
     TextView txtMerk;
 
-    @Bind(R.id.txt_harga)
+    @BindView(R.id.txt_harga)
     TextView txtHarga;
 
-    @Bind(R.id.txt_stok)
+    @BindView(R.id.txt_stok)
     TextView txtStok;
 
     @Inject

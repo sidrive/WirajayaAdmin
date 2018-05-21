@@ -23,7 +23,7 @@ import com.wirajaya.adventure.admin.ui.main.MainAct;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 
 /**
  * Created by ikun on 28/12/17.
@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity {
     @Inject
     SplashPresenter presenter;
 
-    @Bind(R.id.imageView3)
+    @BindView(R.id.imageView3)
     ImageView imageView;
 
 

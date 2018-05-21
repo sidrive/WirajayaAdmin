@@ -51,7 +51,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -68,22 +68,22 @@ public class MainAct extends BaseActivity implements CarierFragment.OnFragmentIn
 
     private static final int RC_LOC_PERM = 1001;
 
-    @Bind(R.id.txtnama_user)
+    @BindView(R.id.txtnama_user)
     TextView txtnama;
 
-    @Bind(R.id.img_avatar)
+    @BindView(R.id.img_avatar)
     ImageView imgAvatar;
 
-    @Bind(R.id.listmotor)
+    @BindView(R.id.listmotor)
     RecyclerView lsmotor;
 
-    @Bind(R.id.listprofile)
+    @BindView(R.id.listprofile)
     RecyclerView lsprofile;
 
-    @Bind(R.id.view_progress)
+    @BindView(R.id.view_progress)
     LinearLayout viewProgress;
 
-    @Bind(R.id.frameFragment)
+    @BindView(R.id.frameFragment)
     FrameLayout frame;
 
 

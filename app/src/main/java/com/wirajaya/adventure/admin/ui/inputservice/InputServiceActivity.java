@@ -47,7 +47,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -73,43 +73,43 @@ public class InputServiceActivity extends BaseActivity implements DialogUploadOp
     @BindString(R.string.error_field_required)
     String strErrRequired;
 
-    @Bind(R.id.rdNotaBaru)
+    @BindView(R.id.rdNotaBaru)
     RadioButton rdNotaBaru;
 
-    @Bind(R.id.rdNotaLama)
+    @BindView(R.id.rdNotaLama)
     RadioButton rdNotaLama;
 
-    @Bind(R.id.txtMotor)
+    @BindView(R.id.txtMotor)
     TextView txtMotor;
 
-    @Bind(R.id.input_jenis_service)
+    @BindView(R.id.input_jenis_service)
     EditText txtJenisService;
 
-    @Bind(R.id.input_ketservice)
+    @BindView(R.id.input_ketservice)
     EditText txtKetService;
 
-    @Bind(R.id.layout_jenis_service)
+    @BindView(R.id.layout_jenis_service)
     TextInputLayout lnJenisService;
 
-    @Bind(R.id.layout_service)
+    @BindView(R.id.layout_service)
     TextInputLayout lnService;
 
-    @Bind(R.id.lnPart)
+    @BindView(R.id.lnPart)
     LinearLayout lnPart;
 
-    @Bind(R.id.txt_part)
+    @BindView(R.id.txt_part)
     EditText txtPart;
 
-    @Bind(R.id.txt_kmservice)
+    @BindView(R.id.txt_kmservice)
     EditText txtKmService;
 
-    @Bind(R.id.btn_tglservice)
+    @BindView(R.id.btn_tglservice)
     Button btnTglService;
 
-    @Bind(R.id.imageView2)
+    @BindView(R.id.imageView2)
     ImageView imgAvatar;
 
-    @Bind(R.id.imgNota)
+    @BindView(R.id.imgNota)
     ImageView imgNota;
 
 

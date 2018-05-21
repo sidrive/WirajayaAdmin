@@ -28,7 +28,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HistoryServiceActivity extends BaseActivity {
@@ -36,10 +36,10 @@ public class HistoryServiceActivity extends BaseActivity {
 
     private static final String TAG = "HistoryService";
 
-    @Bind(R.id.listservice)
+    @BindView(R.id.listservice)
     RecyclerView lsservice;
 
-    @Bind(R.id.imgAvatar)
+    @BindView(R.id.imgAvatar)
     ImageView imgAvatar;
 
     @Inject

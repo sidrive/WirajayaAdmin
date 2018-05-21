@@ -57,7 +57,7 @@ import java.io.IOException;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.ButterKnife;
@@ -106,58 +106,58 @@ public class EditProfilActivity extends BaseActivity implements OnDateSetListene
     String strErrRequired;
     @BindColor(R.color.colorBlack)
     int colorBlack;
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.view_progress)
+    @BindView(R.id.view_progress)
     LinearLayout viewProgress;
 
-    @Bind(R.id.input_name)
+    @BindView(R.id.input_name)
     EditText inputName;
 
-    @Bind(R.id.layout_input_birthday)
+    @BindView(R.id.layout_input_birthday)
     TextInputLayout inputLayoutBirthday;
 
-    @Bind(R.id.layout_input_gender)
+    @BindView(R.id.layout_input_gender)
     TextInputLayout inputLayoutGender;
 
-    @Bind(R.id.input_birthday)
+    @BindView(R.id.input_birthday)
     EditText inputBirthDay;
 
-    @Bind(R.id.input_gender)
+    @BindView(R.id.input_gender)
     EditText inputGender;
 
-    @Bind(R.id.input_email)
+    @BindView(R.id.input_email)
     EditText inputEmail;
 
-    @Bind(R.id.input_phone)
+    @BindView(R.id.input_phone)
     EditText inputPhone;
 
-    @Bind(R.id.input_alamat)
+    @BindView(R.id.input_alamat)
     EditText inputAlamat;
 
-    @Bind(R.id.input_jalan)
+    @BindView(R.id.input_jalan)
     EditText inputJalan;
 
-    @Bind(R.id.input_kota)
+    @BindView(R.id.input_kota)
     EditText inputKota;
 
-    @Bind(R.id.input_provinsi)
+    @BindView(R.id.input_provinsi)
     EditText inputProvinsi;
 
-    @Bind(R.id.input_kodepos)
+    @BindView(R.id.input_kodepos)
     EditText inputKodepos;
 
-    @Bind(R.id.input_member)
+    @BindView(R.id.input_member)
     EditText inputMember;
 
-    @Bind(R.id.img_avatar)
+    @BindView(R.id.img_avatar)
     CircleImageView imgAvatar;
 
-    @Bind(R.id.imgMap)
+    @BindView(R.id.imgMap)
     ImageView imgMap;
 
-    @Bind(R.id.rel_map)
+    @BindView(R.id.rel_map)
     RelativeLayout relMap;
 
     @Inject

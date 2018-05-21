@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.facebook.GraphRequest.TAG;
@@ -90,22 +90,22 @@ public class AdapterService extends RecyclerView.Adapter<AdapterService.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @Bind(R.id.txtIdmotor)
+        @BindView(R.id.txtIdmotor)
         TextView txtIdmotor;
 
-        @Bind(R.id.txtJenisService)
+        @BindView(R.id.txtJenisService)
         TextView txtJenisService;
 
-        @Bind(R.id.txtKetService)
+        @BindView(R.id.txtKetService)
         TextView txtKetService;
 
-        @Bind(R.id.txtkmservice)
+        @BindView(R.id.txtkmservice)
         TextView txtkmservice;
 
-        @Bind(R.id.txttglservice)
+        @BindView(R.id.txttglservice)
         TextView tglService;
 
-        @Bind(R.id.btnViewNota)
+        @BindView(R.id.btnViewNota)
         Button btnViewNota;
 
         public ViewHolder(View itemView) {

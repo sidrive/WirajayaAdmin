@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.wirajaya.adventure.admin.R;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -19,10 +19,10 @@ public class DialogUploadOption extends Dialog {
     OnDialogUploadOptionClickListener mCallBack;
     private Context context;
 
-    @Bind(R.id.btn_gallery)
+    @BindView(R.id.btn_gallery)
     Button btnGallery;
 
-    @Bind(R.id.btn_ambil_photo)
+    @BindView(R.id.btn_ambil_photo)
     Button btnTakeAPhoto;
 
     public interface OnDialogUploadOptionClickListener {

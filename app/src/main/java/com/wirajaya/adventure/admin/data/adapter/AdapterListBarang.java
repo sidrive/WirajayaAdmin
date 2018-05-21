@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.crashlytics.android.core.CrashlyticsCore.TAG;
@@ -169,25 +169,25 @@ public class AdapterListBarang extends Adapter<AdapterListBarang.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
 
-        @Bind(R.id.txtNamaBrg)
+        @BindView(R.id.txtNamaBrg)
         TextView txtNamaBrg;
 
-        @Bind(R.id.txtHarga)
+        @BindView(R.id.txtHarga)
         TextView txtHarga;
 
-        @Bind(R.id.txtStok)
+        @BindView(R.id.txtStok)
         TextView txtStok;
 
-        @Bind(R.id.txtTglUpdateBrg)
+        @BindView(R.id.txtTglUpdateBrg)
         TextView txtTglUpdateBrg;
 
-        @Bind(R.id.btnUpdateStok)
+        @BindView(R.id.btnUpdateStok)
         Button btnUpdateStok;
 
-        @Bind(R.id.imgPhotoBrg)
+        @BindView(R.id.imgPhotoBrg)
         ImageView imgPhotoBrg;
 
-        @Bind(R.id.view_progress)
+        @BindView(R.id.view_progress)
         LinearLayout viewProgress;
 
 
